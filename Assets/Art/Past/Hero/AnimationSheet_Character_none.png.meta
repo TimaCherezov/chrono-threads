@@ -1,31 +1,19 @@
 fileFormatVersion: 2
-guid: ab8d8a0dbe52c0e428f7080669a81b43
+guid: 8dd47a1f6897fe14baa690d0f674e7f9
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -3732297242317039473
-    second: AnimationSheet_Character_run_0
+      213: 3412869396255651751
+    second: AnimationSheet_Character_none_0
   - first:
-      213: -1902941380226888539
-    second: AnimationSheet_Character_run_1
+      213: 4977550816372692162
+    second: AnimationSheet_Character_none_1
   - first:
-      213: 2136769984696831452
-    second: AnimationSheet_Character_run_2
+      213: 2141586186262558508
+    second: AnimationSheet_Character_none_2
   - first:
-      213: 7518899503562650069
-    second: AnimationSheet_Character_run_3
-  - first:
-      213: -2711137010225223009
-    second: AnimationSheet_Character_run_4
-  - first:
-      213: 4788180996929946829
-    second: AnimationSheet_Character_run_5
-  - first:
-      213: 7029910167905184474
-    second: AnimationSheet_Character_run_6
-  - first:
-      213: 1879012940804645630
-    second: AnimationSheet_Character_run_7
+      213: -2527164662378498954
+    second: AnimationSheet_Character_none_3
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -121,13 +109,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: AnimationSheet_Character_run_0
+      name: AnimationSheet_Character_none_0
       rect:
         serializedVersion: 2
-        x: 5
-        y: 0
-        width: 19
-        height: 28
+        x: 6
+        y: 33
+        width: 18
+        height: 30
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -136,18 +124,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: f88d583ce67343cc0800000000000000
-      internalID: -3732297242317039473
+      spriteID: 7a7be9c32a2fc5f20800000000000000
+      internalID: 3412869396255651751
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: AnimationSheet_Character_run_1
+      name: AnimationSheet_Character_none_1
       rect:
         serializedVersion: 2
         x: 38
-        y: 0
+        y: 33
         width: 18
         height: 29
       alignment: 7
@@ -158,40 +146,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 5ac4f2b95e46795e0800000000000000
-      internalID: -1902941380226888539
+      spriteID: 2c499556810d31540800000000000000
+      internalID: 4977550816372692162
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: AnimationSheet_Character_run_2
+      name: AnimationSheet_Character_none_2
       rect:
         serializedVersion: 2
-        x: 70
-        y: 0
-        width: 18
-        height: 31
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: cdd4290eaf457ad10800000000000000
-      internalID: 2136769984696831452
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: AnimationSheet_Character_run_3
-      rect:
-        serializedVersion: 2
-        x: 102
-        y: 0
+        x: 6
+        y: 1
         width: 18
         height: 30
       alignment: 7
@@ -202,40 +168,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 5d176bbf24f785860800000000000000
-      internalID: 7518899503562650069
+      spriteID: c2730103a4178bd10800000000000000
+      internalID: 2141586186262558508
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: AnimationSheet_Character_run_4
+      name: AnimationSheet_Character_none_3
       rect:
         serializedVersion: 2
-        x: 133
-        y: 0
-        width: 19
-        height: 28
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: f9a6c10e04b106ad0800000000000000
-      internalID: -2711137010225223009
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: AnimationSheet_Character_run_5
-      rect:
-        serializedVersion: 2
-        x: 166
-        y: 0
+        x: 38
+        y: 1
         width: 18
         height: 29
       alignment: 7
@@ -246,52 +190,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: dc409427f39037240800000000000000
-      internalID: 4788180996929946829
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: AnimationSheet_Character_run_6
-      rect:
-        serializedVersion: 2
-        x: 198
-        y: 0
-        width: 18
-        height: 31
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: ada25e83d024f8160800000000000000
-      internalID: 7029910167905184474
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: AnimationSheet_Character_run_7
-      rect:
-        serializedVersion: 2
-        x: 230
-        y: 0
-        width: 18
-        height: 30
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: ef2e5017058931a10800000000000000
-      internalID: 1879012940804645630
+      spriteID: 674720a0125bdecd0800000000000000
+      internalID: -2527164662378498954
       vertices: []
       indices: 
       edges: []
@@ -300,7 +200,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 715796f69b1059d44b90cf44be062dd7
+    spriteID: ab95562a545480a45b50860051fa5abb
     internalID: 0
     vertices: []
     indices: 
@@ -310,14 +210,10 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      AnimationSheet_Character_run_0: -3732297242317039473
-      AnimationSheet_Character_run_1: -1902941380226888539
-      AnimationSheet_Character_run_2: 2136769984696831452
-      AnimationSheet_Character_run_3: 7518899503562650069
-      AnimationSheet_Character_run_4: -2711137010225223009
-      AnimationSheet_Character_run_5: 4788180996929946829
-      AnimationSheet_Character_run_6: 7029910167905184474
-      AnimationSheet_Character_run_7: 1879012940804645630
+      AnimationSheet_Character_none_0: 3412869396255651751
+      AnimationSheet_Character_none_1: 4977550816372692162
+      AnimationSheet_Character_none_2: 2141586186262558508
+      AnimationSheet_Character_none_3: -2527164662378498954
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
