@@ -7,12 +7,14 @@ public class PastHero : MonoBehaviour
     [SerializeField] private float moveSpeed = 5f;
     private Rigidbody2D rb;
     private Animator anim;
+    private SpriteRenderer sr;
     private Vector2 lastDirection = Vector2.down;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
+        sr = GetComponent<SpriteRenderer>();
     }
 
     private void FixedUpdate()
@@ -38,12 +40,15 @@ public class PastHero : MonoBehaviour
         anim.SetBool("IsMoving", inputVector != Vector2.zero);
         anim.SetBool("IsJumping", isJumping);
 
-        var sr = GetComponent<SpriteRenderer>(); // для поворота персонажа в стороны
-
-        if (lastDirection.x < 0)
-            sr.flipX = true;
-        else if (lastDirection.x > 0)
-            sr.flipX = false;
+        switch (lastDirection.x)
+        {
+            case < 0:
+                sr.flipX = true;
+                break;
+            case > 0:
+                sr.flipX = false;
+                break;
+        }
 
 
         rb.MovePosition(rb.position + inputVector * (moveSpeed * Time.fixedDeltaTime));
