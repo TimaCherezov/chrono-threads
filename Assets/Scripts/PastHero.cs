@@ -5,6 +5,7 @@ using UnityEngine;
 public class PastHero : MonoBehaviour
 {
     [SerializeField] private float moveSpeed = 5f;
+    [SerializeField] private Camera cam;
     private Rigidbody2D rb;
     private Animator anim;
     private SpriteRenderer sr;
@@ -32,7 +33,7 @@ public class PastHero : MonoBehaviour
 
         if (inputVector != Vector2.zero)
         {
-            lastDirection = inputVector; // нужен для поворота игрока при нажатии боковых кнопок
+            lastDirection = inputVector; // пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
         }
 
         anim.SetFloat("MoveX", inputVector.x);
@@ -52,5 +53,6 @@ public class PastHero : MonoBehaviour
 
 
         rb.MovePosition(rb.position + inputVector * (moveSpeed * Time.fixedDeltaTime));
+        cam.transform.position = transform.position + new Vector3(0,0,cam.transform.position.z);
     }
 }
