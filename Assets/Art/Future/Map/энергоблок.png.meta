@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: b3746c085ac2eda4c8c10416d73e5fa8
+guid: e4f66446d5544424493f74d38a275260
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 7310141904686617433
-    second: crystal_map_0
+      213: 7290094857185578950
+    second: "\u044D\u043D\u0435\u0440\u0433\u043E\u0431\u043B\u043E\u043A_0"
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -51,7 +51,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 32
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -72,7 +72,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 128
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -100,23 +100,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: crystal_map_0
+      name: "\u044D\u043D\u0435\u0440\u0433\u043E\u0431\u043B\u043E\u043A_0"
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 1344
-        height: 768
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 256
+        y: 260
+        width: 511
+        height: 721
+      alignment: 9
+      pivot: {x: 0.50323725, y: 0.15697692}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 9531b8ed457d27560800000000000000
-      internalID: 7310141904686617433
+      spriteID: 6cfc275e5ae9b2560800000000000000
+      internalID: 7290094857185578950
       vertices: []
       indices: 
       edges: []
@@ -125,7 +125,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 5a3b53ffc73c3784bb82625ca7139367
     internalID: 0
     vertices: []
     indices: 
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      crystal_map_0: 7310141904686617433
+      "\u044D\u043D\u0435\u0440\u0433\u043E\u0431\u043B\u043E\u043A_0": 7290094857185578950
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: b3746c085ac2eda4c8c10416d73e5fa8
+guid: bf8b7686c49bc444c8e2c54574cb27f2
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 7310141904686617433
-    second: crystal_map_0
+      213: -5197011264382342558
+    second: ad9a26d913d111f08bbb6ab936583010_1_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -37,7 +37,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: 1
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -75,7 +75,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -100,7 +100,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: crystal_map_0
+      name: ad9a26d913d111f08bbb6ab936583010_1_0
       rect:
         serializedVersion: 2
         x: 0
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 9531b8ed457d27560800000000000000
-      internalID: 7310141904686617433
+      spriteID: 26a69cc3ac180e7b0800000000000000
+      internalID: -5197011264382342558
       vertices: []
       indices: 
       edges: []
@@ -134,8 +134,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      crystal_map_0: 7310141904686617433
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

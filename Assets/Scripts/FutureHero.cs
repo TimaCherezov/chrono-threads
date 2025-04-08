@@ -5,6 +5,7 @@ using UnityEngine;
 public class FutureHero : MonoBehaviour
 {
     [SerializeField] private float moveSpeed = 5f;
+    [SerializeField] private Camera cam;
     private Rigidbody2D rb;
     private Animator anim;
     private Vector2 lastDirection = Vector2.down;
@@ -44,5 +45,6 @@ public class FutureHero : MonoBehaviour
 
 
         rb.MovePosition(rb.position + inputVector * (moveSpeed * Time.fixedDeltaTime));
+        cam.transform.position = transform.position + new Vector3(0, 0, cam.transform.position.z);
     }
 }
