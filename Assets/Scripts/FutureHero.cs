@@ -8,14 +8,12 @@ public class FutureHero : MonoBehaviour
     [SerializeField] private Camera cam;
     private Rigidbody2D rb;
     private Animator anim;
-    private SpriteRenderer sr;
     private Vector2 lastDirection = Vector2.down;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
-        sr = GetComponent<SpriteRenderer>();
     }
 
     private void FixedUpdate()
@@ -38,15 +36,12 @@ public class FutureHero : MonoBehaviour
         anim.SetFloat("MoveY", inputVector.y);
         anim.SetBool("IsMoving", inputVector != Vector2.zero);
 
-        switch (lastDirection.x)
-        {
-            case < 0:
-                sr.flipX = true;
-                break;
-            case > 0:
-                sr.flipX = false;
-                break;
-        }
+        SpriteRenderer sr = GetComponent<SpriteRenderer>();
+
+        if (lastDirection.x < 0)
+            sr.flipX = true;
+        else if (lastDirection.x > 0)
+            sr.flipX = false;
 
 
         rb.MovePosition(rb.position + inputVector * (moveSpeed * Time.fixedDeltaTime));

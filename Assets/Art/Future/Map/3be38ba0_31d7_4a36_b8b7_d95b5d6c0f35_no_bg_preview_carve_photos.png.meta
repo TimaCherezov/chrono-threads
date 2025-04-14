@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: e4f66446d5544424493f74d38a275260
+guid: e8bdb931c881a43459f62659f5c7a5e1
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 7290094857185578950
-    second: "\u044D\u043D\u0435\u0440\u0433\u043E\u0431\u043B\u043E\u043A_0"
+      213: 6761804668221876870
+    second: 3be38ba0_31d7_4a36_b8b7_d95b5d6c0f35_no_bg_preview_carve_photos_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -72,7 +72,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 128
+    maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -100,23 +100,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: "\u044D\u043D\u0435\u0440\u0433\u043E\u0431\u043B\u043E\u043A_0"
+      name: 3be38ba0_31d7_4a36_b8b7_d95b5d6c0f35_no_bg_preview_carve_photos_0
       rect:
         serializedVersion: 2
-        x: 256
-        y: 260
-        width: 511
-        height: 721
+        x: 96
+        y: 30
+        width: 445
+        height: 573
       alignment: 9
-      pivot: {x: 0.4932749, y: 0.05283236}
+      pivot: {x: 0.5052452, y: 0.06685784}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 6cfc275e5ae9b2560800000000000000
-      internalID: 7290094857185578950
+      spriteID: 68a61f92581c6dd50800000000000000
+      internalID: 6761804668221876870
       vertices: []
       indices: 
       edges: []
@@ -125,7 +125,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 5a3b53ffc73c3784bb82625ca7139367
+    spriteID: dd95c351b0c365c4d91bf8850c6f94bb
     internalID: 0
     vertices: []
     indices: 
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      "\u044D\u043D\u0435\u0440\u0433\u043E\u0431\u043B\u043E\u043A_0": 7290094857185578950
+      3be38ba0_31d7_4a36_b8b7_d95b5d6c0f35_no_bg_preview_carve_photos_0: 6761804668221876870
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
