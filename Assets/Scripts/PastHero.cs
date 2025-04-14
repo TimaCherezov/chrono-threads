@@ -6,10 +6,11 @@ public class PastHero : MonoBehaviour
 {
     [SerializeField] private float moveSpeed = 5f;
     [SerializeField] private Camera cam;
+    public bool IsAllowedMove { get; set; } = true;
     private Rigidbody2D rb;
     private Animator anim;
     private Vector2 lastDirection = Vector2.down;
-
+    
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -18,6 +19,7 @@ public class PastHero : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (!IsAllowedMove) return;
         var inputVector = new Vector2(0, 0);
         var isJumping = false;
 
