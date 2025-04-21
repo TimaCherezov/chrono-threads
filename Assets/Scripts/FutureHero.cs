@@ -11,6 +11,7 @@ public class FutureHero : MonoBehaviour
     private SpriteRenderer sr;
     private Vector2 lastDirection = Vector2.down;
     [SerializeField] private int health = 10;
+    public bool isMoving;
 
     private void Awake()
     {
@@ -21,6 +22,8 @@ public class FutureHero : MonoBehaviour
 
     private void FixedUpdate()
     {
+        isMoving = false;
+
         var inputVector = new Vector2(0, 0);
 
         if (Input.GetKey(KeyCode.UpArrow)) inputVector.y = 1f;
@@ -39,6 +42,8 @@ public class FutureHero : MonoBehaviour
         anim.SetFloat("MoveY", inputVector.y);
         anim.SetBool("IsMoving", inputVector != Vector2.zero);
 
+        if (inputVector != Vector2.zero) 
+            isMoving = true;
 
         if (lastDirection.x < 0)
             sr.flipX = true;

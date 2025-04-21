@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class Dron : MonoBehaviour
@@ -8,6 +9,8 @@ public class Dron : MonoBehaviour
     private Vector2[] waypoints;
     private int currentWaypoint;
     [SerializeField] private GameObject bulletPrefab;
+    public float attackCooldown = 2f; // Время между атаками
+    private float nextAttackTime;
 
     void Start()
     {
@@ -35,21 +38,26 @@ public class Dron : MonoBehaviour
         }
     }
 
-    void OnTriggerEnter2D(Collider2D other)
+    void OnTriggerStay2D(Collider2D other)
     {
         if (other.gameObject.name != "FutureHero") return;
         var distance = Vector2.Distance(transform.position, other.transform.position);
-        if (distance <= 2f)
+        if (distance <= 14f && Time.time >= nextAttackTime)
         {
             AttackHero(other.gameObject);
+            nextAttackTime = Time.time + attackCooldown;
         }
     }
 
     void AttackHero(GameObject hero)
     {
-        var bullet = Instantiate(bulletPrefab);
-        bullet.GetComponent<Bullet>().hero = hero;
-        bullet.transform.position = transform.position;
-        Debug.Log("Дрон атакует FutureHero через триггер!");
+        var heroMovement = hero.GetComponent<FutureHero>();
+        if (heroMovement.isMoving)
+        {
+            var bullet = Instantiate(bulletPrefab);
+            bullet.GetComponent<Bullet>().hero = hero;
+            bullet.transform.position = transform.position;
+            Debug.Log("Дрон атакует FutureHero через триггер!");
+        }
     }
 }

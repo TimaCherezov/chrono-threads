@@ -15,7 +15,7 @@ public class Bullet : MonoBehaviour
     {
         transform.position = Vector2.MoveTowards(
             transform.position, hero.transform.position,
-            1 * Time.deltaTime);
+            2 * Time.deltaTime);
         Vector2 direction = hero.transform.position - transform.position;
         var angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         var targetRotation = Quaternion.Euler(0, 0, angle);
