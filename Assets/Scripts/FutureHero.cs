@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class FutureHero : MonoBehaviour
 {
@@ -11,6 +12,8 @@ public class FutureHero : MonoBehaviour
     private SpriteRenderer sr;
     private Vector2 lastDirection = Vector2.down;
     [SerializeField] private int health = 10;
+
+    [SerializeField]public GameObject heroTarget;
 
     private void Awake()
     {
@@ -53,6 +56,6 @@ public class FutureHero : MonoBehaviour
     public void TakeDamage(int damage)
     {
         health -= damage;
-        Debug.Log("Future hero has taken damage");
+        Debug.Log("Future target has taken damage");
     }
 }

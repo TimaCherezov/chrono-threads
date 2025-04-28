@@ -4,7 +4,7 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     private Rigidbody rb;
-    public GameObject hero { get; set; }
+    public GameObject target { get; set; }
 
     void Start()
     {
@@ -14,20 +14,19 @@ public class Bullet : MonoBehaviour
     void FixedUpdate()
     {
         transform.position = Vector2.MoveTowards(
-            transform.position, hero.transform.position,
+            transform.position, target.transform.position,
             1 * Time.deltaTime);
-        Vector2 direction = hero.transform.position - transform.position;
+        Vector2 direction = target.transform.position - transform.position;
         var angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         var targetRotation = Quaternion.Euler(0, 0, angle);
         transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, 5 * Time.deltaTime);
-
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.name != "FutureHero") return;
+        if (other.gameObject.name != "HeroTarget") return;
         // other.GetComponent<FutureHero>().TakeDamage(2);
-        other.GetComponent<HeroHealth>().ApplyDamage(-2);
+        other.GetComponentInParent<HeroHealth>().ApplyDamage(-2);
         Destroy(gameObject);
     }
 }

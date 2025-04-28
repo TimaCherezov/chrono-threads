@@ -22,7 +22,7 @@ public class HeroHealth : MonoBehaviour
             maxHealth - currentHealth
         );
         _scrollbar.size = CalculateScrollbarSize();
-        Debug.Log($"Future hero has damage applied {damage}");
+        Debug.Log($"Future target has damage applied {damage}");
     }
 
     private float CalculateScrollbarSize() =>
