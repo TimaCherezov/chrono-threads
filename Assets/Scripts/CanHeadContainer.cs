@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class CanHeadContainer : MonoBehaviour
@@ -33,14 +34,7 @@ public class CanHeadContainer : MonoBehaviour
 
     void CheckSequenceCorrectness()
     {
-        if (cansHistory.Count != cans.Length)
-            return;
-        for (var i = 0; i < cans.Length; i++)
-        {
-            if (cansHistory[i] != cans[i])
-                return;
-        }
-
-        Debug.Log("DONE");
+        if (cansHistory.SequenceEqual(cans))
+            Debug.Log("DONE");
     }
 }

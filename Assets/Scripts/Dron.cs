@@ -5,12 +5,13 @@ public class Dron : MonoBehaviour
     private float sideLength = 3f;
     private float delta = 1f;
     private float speed = 1f;
-    // private Vector2[] waypoints;
     [SerializeField] private GameObject[] waypoints;
     private int currentWaypoint;
     [SerializeField] private GameObject bulletPrefab;
     private bool isRotating;
     private int rotatingTimes;
+    private const float RotationSpeed = 90f;
+    private const float RangeAction = 2f;
 
     void FixedUpdate()
     {
@@ -28,8 +29,7 @@ public class Dron : MonoBehaviour
         var direction = waypoints[currentWaypoint].transform.position - transform.position;
         var angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         var targetRotation = Quaternion.Euler(0, 0, angle);
-        var rotationSpeed = 90f;
-        transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+        transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, RotationSpeed * Time.deltaTime);
 
         if (Quaternion.Angle(transform.rotation, targetRotation) < 0.01f)
         {
@@ -57,7 +57,7 @@ public class Dron : MonoBehaviour
     {
         if (other.gameObject.name != "FutureHero") return;
         var distance = Vector2.Distance(transform.position, other.transform.position);
-        if (distance <= 2f)
+        if (distance <= RangeAction)
         {
             AttackHero(other.gameObject);
         }
