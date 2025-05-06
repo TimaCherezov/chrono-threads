@@ -19,6 +19,7 @@ public class PastHero : MonoBehaviour
 
     private void FixedUpdate()
     {
+        // review: РѕС‡РµРЅСЊ РјРЅРѕРіРѕ РїРѕРІС‚РѕСЂРµРЅРёР№ СЃ FutureHero, РЅР°РґРѕ Р±С‹ РєР°Рє-С‚Рѕ РёР·Р±Р°РІРёС‚СЊСЃСЏ РѕС‚ РґСѓР±Р»РёСЂРѕРІР°РЅРёСЏ
         if (!IsAllowedMove) return;
         var inputVector = new Vector2(0, 0);
         var isJumping = false;
@@ -33,7 +34,7 @@ public class PastHero : MonoBehaviour
 
         if (inputVector != Vector2.zero)
         {
-            lastDirection = inputVector; // нужен для поворота игрока при нажатии боковых кнопок
+            lastDirection = inputVector; // пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
         }
 
         anim.SetFloat("MoveX", inputVector.x);
@@ -41,7 +42,7 @@ public class PastHero : MonoBehaviour
         anim.SetBool("IsMoving", inputVector != Vector2.zero);
         anim.SetBool("IsJumping", isJumping);
 
-        var sr = GetComponent<SpriteRenderer>(); // для поворота персонажа в стороны
+        var sr = GetComponent<SpriteRenderer>(); // пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
         if (lastDirection.x < 0)
             sr.flipX = true;

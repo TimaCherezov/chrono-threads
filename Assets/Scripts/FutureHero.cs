@@ -43,6 +43,7 @@ public class FutureHero : MonoBehaviour
         anim.SetBool("IsMoving", inputVector != Vector2.zero);
 
 
+        // review: sr.flipX = lastdirection.x < 0;
         if (lastDirection.x < 0)
             sr.flipX = true;
         else if (lastDirection.x > 0)
@@ -50,6 +51,7 @@ public class FutureHero : MonoBehaviour
 
 
         rb.MovePosition(rb.position + inputVector * (moveSpeed * Time.fixedDeltaTime));
+        // review: почему бы камеру не поместить в отдельный скрипт?
         cam.transform.position = transform.position + new Vector3(0, 0, cam.transform.position.z);
     }
 
