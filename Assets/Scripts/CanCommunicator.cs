@@ -21,6 +21,7 @@ public class CanCommunicator : MonoBehaviour
         if (!other.TryGetComponent(typeof(CanStateContainer), out var can))
             return;
         Debug.Log("TURNED ON");
+        // review: а зачем тут каст?
         target = can as CanStateContainer;
     }
 

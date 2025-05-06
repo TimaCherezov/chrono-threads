@@ -7,7 +7,7 @@ public class HeroHealth : MonoBehaviour
     [SerializeField] private int maxHealth = 10;
     [SerializeField] private int currentHealth = 10;
     [SerializeField] private GameObject healthBar;
-    private Scrollbar _scrollbar;
+    private Scrollbar _scrollbar; // review: не по кодстайлу
 
     private void Awake()
     {
@@ -17,6 +17,8 @@ public class HeroHealth : MonoBehaviour
 
     public void ApplyDamage(int damage)
     {
+        // review: сложно читать, лучше в одну строку
+        currentHealth = Math.Clamp(currentHealth - damage)
         currentHealth += Math.Clamp(damage,
             -currentHealth,
             maxHealth - currentHealth

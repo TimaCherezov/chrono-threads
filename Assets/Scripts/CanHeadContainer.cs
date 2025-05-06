@@ -13,6 +13,7 @@ public class CanHeadContainer : MonoBehaviour
         cansHistory = new List<GameObject>(cans.Length);
         foreach (var can in cans)
         {
+            // review: разве не должна происходить отписка в какой-то момент?
             can.GetComponent<CanStateContainer>()
                 .onStateChange.AddListener(() => OnCanStateChanged(can));
 
