@@ -6,6 +6,8 @@ public class CanHeadContainer : MonoBehaviour
 {
     [SerializeField] private GameObject[] cans;
     [SerializeField] private List<GameObject> cansHistory;
+    [SerializeField] private GameObject targetObject;
+    [SerializeField] private FadeController fadeController;
 
     private void Awake()
     {
@@ -41,6 +43,12 @@ public class CanHeadContainer : MonoBehaviour
                 return;
         }
 
-        Debug.Log("DONE");
+        fadeController.StartFadeIn();
+        ShowObject();
+    }
+    public void ShowObject()
+    {
+        if (targetObject != null)
+            targetObject.SetActive(true);
     }
 }
