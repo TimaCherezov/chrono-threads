@@ -7,6 +7,8 @@ public class CanHeadContainer : MonoBehaviour
 {
     [SerializeField] private GameObject[] cans;
     [SerializeField] private List<GameObject> cansHistory;
+    [SerializeField] private GameObject targetObject;
+    [SerializeField] private FadeController fadeController;
 
     private void Awake()
     {
