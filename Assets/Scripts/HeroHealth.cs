@@ -18,7 +18,7 @@ public class HeroHealth : MonoBehaviour
     public void ApplyDamage(int damage)
     {
         // review: сложно читать, лучше в одну строку
-        currentHealth = Math.Clamp(currentHealth - damage)
+        // review: currentHealth = Math.Clamp(currentHealth - damage, 0, maxHealth);
         currentHealth += Math.Clamp(damage,
             -currentHealth,
             maxHealth - currentHealth

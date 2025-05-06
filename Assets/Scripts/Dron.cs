@@ -10,7 +10,7 @@ public class Dron : MonoBehaviour
     [SerializeField] private GameObject bulletPrefab;
     private bool isRotating;
     private int rotatingTimes;
-    private const float RotationSpeed = 90f;
+    private const float RotationSpeed = 90f; // review: константы обычно на самом верху класса перечисляются
     private const float RangeAction = 2f;
 
     void FixedUpdate()
@@ -55,6 +55,7 @@ public class Dron : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
+        // review: лучше сравнивать через CompareTag/CompareHash или вообще по ссылке
         if (other.gameObject.name != "FutureHero") return;
         var distance = Vector2.Distance(transform.position, other.transform.position);
         if (distance <= RangeAction)
