@@ -12,7 +12,7 @@ public class CanCommunicator : MonoBehaviour
             Input.GetKeyDown(KeyCode.E))
         {
             target.SetState(!target.IsActive);
-            Debug.Log("CHAGED");
+            Debug.Log("CHANGED");
         }
     }
 

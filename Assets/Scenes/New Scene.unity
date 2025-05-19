@@ -782,6 +782,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: LeftCamera
       objectReference: {fileID: 0}
+    - target: {fileID: 1250287037578722022, guid: 95ade3c3e7f307f4dba5632cda2d381b, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8431531037201848362, guid: 95ade3c3e7f307f4dba5632cda2d381b, type: 3}
       propertyPath: m_LocalPosition.x
       value: -2.3

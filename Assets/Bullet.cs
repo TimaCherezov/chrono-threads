@@ -25,7 +25,6 @@ public class Bullet : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.name != "HeroTarget") return;
-        // other.GetComponent<FutureHero>().TakeDamage(2);
         other.GetComponentInParent<HeroHealth>().ApplyDamage(-2);
         Destroy(gameObject);
     }

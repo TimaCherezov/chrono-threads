@@ -57,9 +57,10 @@ public class Dron : MonoBehaviour
     {
         if (other.gameObject.name != "FutureHero") return;
         var distance = Vector2.Distance(transform.position, other.transform.position);
-        if (distance <= RangeAction)
+        if (distance <= RangeAction && other.GetComponent<FutureHero>().IsMoving)
         {
             AttackHero(other.gameObject);
+            GetComponent<AudioSource>().Play();
         }
     }
 

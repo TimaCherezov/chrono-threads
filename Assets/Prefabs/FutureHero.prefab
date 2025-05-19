@@ -236,7 +236,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 2
   cam: {fileID: 0}
-  health: 10
+  health: 100
+  IsMoving: 0
   heroTarget: {fileID: 1575710573170892365}
 --- !u!70 &1014054047017142727
 CapsuleCollider2D:
@@ -290,6 +291,7 @@ MonoBehaviour:
   maxHealth: 10
   currentHealth: 10
   healthBar: {fileID: 0}
+  DeadPanel: {fileID: 0}
 --- !u!58 &1954594806555537420
 CircleCollider2D:
   m_ObjectHideFlags: 0

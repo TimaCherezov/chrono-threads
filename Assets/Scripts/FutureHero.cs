@@ -12,6 +12,7 @@ public class FutureHero : MonoBehaviour
     private SpriteRenderer sr;
     private Vector2 lastDirection = Vector2.down;
     [SerializeField] private int health = 10;
+    public bool IsMoving = false;
 
     [SerializeField]public GameObject heroTarget;
 
@@ -25,7 +26,6 @@ public class FutureHero : MonoBehaviour
     private void FixedUpdate()
     {
         var inputVector = new Vector2(0, 0);
-
         if (Input.GetKey(KeyCode.UpArrow)) inputVector.y = 1f;
         if (Input.GetKey(KeyCode.DownArrow)) inputVector.y = -1f;
         if (Input.GetKey(KeyCode.RightArrow)) inputVector.x = 1f;
@@ -35,7 +35,12 @@ public class FutureHero : MonoBehaviour
 
         if (inputVector != Vector2.zero)
         {
+            IsMoving = true;
             lastDirection = inputVector;
+        }
+        else
+        {
+            IsMoving = false;
         }
 
         anim.SetFloat("MoveX", inputVector.x);
@@ -43,15 +48,10 @@ public class FutureHero : MonoBehaviour
         anim.SetBool("IsMoving", inputVector != Vector2.zero);
 
 
-        // review: sr.flipX = lastdirection.x < 0;
-        if (lastDirection.x < 0)
-            sr.flipX = true;
-        else if (lastDirection.x > 0)
-            sr.flipX = false;
+        sr.flipX = lastDirection.x < 0;
 
 
         rb.MovePosition(rb.position + inputVector * (moveSpeed * Time.fixedDeltaTime));
-        // review: почему бы камеру не поместить в отдельный скрипт?
         cam.transform.position = transform.position + new Vector3(0, 0, cam.transform.position.z);
     }
 

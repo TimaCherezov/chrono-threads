@@ -1,44 +1,77 @@
+// using UnityEngine;
+// using UnityEngine.UI;
+// using System.Collections;
+//
+// public class FadeController : MonoBehaviour
+// {
+//     [SerializeField] private Image fadeImage;  // ЧёпїЅпїЅпїЅпїЅ Image пїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
+//     [SerializeField] private float fadeInDuration = 5f;  // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+//
+//     // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+//     public void InstantFadeOut()
+//     {
+//         fadeImage.color = new Color(0, 0, 0, 1);  // пїЅпїЅпїЅпїЅпїЅ = 1 (пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ)
+//     }
+//
+//     // пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+//     public void StartFadeIn()
+//     {
+//         StartCoroutine(FadeInCoroutine());
+//     }
+//
+//     private IEnumerator FadeInCoroutine()
+//     
+//     {
+//         float timer = 0;
+//         Color startColor = new Color(0, 0, 0, 1);  // пїЅпїЅпїЅпїЅпїЅпїЅ: пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+//         Color endColor = new Color(0, 0, 0, 0);     // пїЅпїЅпїЅпїЅпїЅ: пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+//
+//         while (timer < fadeInDuration)
+//         {
+//             fadeImage.color = Color.Lerp(startColor, endColor, timer / fadeInDuration);
+//             timer += Time.deltaTime;
+//             yield return null;
+//         }
+//
+//         fadeImage.color = endColor;  // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+//     }
+//
+//     // пїЅпїЅпїЅпїЅпїЅ: пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ + пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+//     public void InstantFadeOutThenIn()
+//     {
+//         InstantFadeOut();
+//         StartFadeIn();
+//     }
+// }
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 
 public class FadeController : MonoBehaviour
 {
-    [SerializeField] private Image fadeImage;  // Чёрный Image на весь экран
-    [SerializeField] private float fadeInDuration = 0.5f;  // Длительность появления
+    [SerializeField] private Image fadeImage;  
+    [SerializeField] private float fadeInDuration = 0.8f; 
 
-    // Мгновенное затемнение
-    public void InstantFadeOut()
-    {
-        fadeImage.color = new Color(0, 0, 0, 1);  // Альфа = 1 (полностью чёрный)
-    }
-
-    // Плавное появление
     public void StartFadeIn()
+     {
+         StartCoroutine(FadeInCoroutine(new Color(0, 0, 0, 0), new Color(0, 0, 0, 1)));
+     }
+
+    public void StartFadeOut()
     {
-        StartCoroutine(FadeInCoroutine());
+        StartCoroutine(FadeInCoroutine(new Color(0, 0, 0, 1), new Color(0, 0, 0, 0)));
     }
 
-    private IEnumerator FadeInCoroutine()
+    private IEnumerator FadeInCoroutine(Color startColor, Color endColor)
     {
-        float timer = 0;
-        Color startColor = new Color(0, 0, 0, 1);  // Начало: полностью чёрный
-        Color endColor = new Color(0, 0, 0, 0);     // Конец: прозрачный
-
-        while (timer < fadeInDuration)
+        var timer = 0f;
+        while (timer < fadeInDuration)  
         {
-            fadeImage.color = Color.Lerp(startColor, endColor, timer / fadeInDuration);
+            fadeImage.color = Color.Lerp(startColor, endColor, timer/fadeInDuration);
             timer += Time.deltaTime;
             yield return null;
         }
 
-        fadeImage.color = endColor;  // Фиксируем полную прозрачность
-    }
-
-    // Комбо: мгновенное затемнение + плавное появление
-    public void InstantFadeOutThenIn()
-    {
-        InstantFadeOut();
-        StartFadeIn();
+        fadeImage.color = endColor;  
     }
 }

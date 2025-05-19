@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -9,10 +10,17 @@ public class TriggerFade : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            Debug.Log("АКТИВИРУЕМ ЗАААТМЕНИЕ!!!");
-            fadeController.StartFadeIn();  // Запускаем затемнение
+            Debug.Log("пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ!!!");
+            GetComponent<AudioSource>().Play();
+            fadeController.StartFadeIn();  // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
             Debug.Log(SceneManager.sceneCount);
-            SceneManager.LoadScene(1);    
+            StartCoroutine(LoadSceneWithDelay());
         }
+    }
+
+    private IEnumerator LoadSceneWithDelay()
+    {
+        yield return new WaitForSeconds(2.5f);
+        SceneManager.LoadScene(1);
     }
 }

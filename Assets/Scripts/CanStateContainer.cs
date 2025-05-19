@@ -19,5 +19,6 @@ public class CanStateContainer : MonoBehaviour
         onBar.SetActive(state);
         offBar.SetActive(!state);
         onStateChange.Invoke();
+        GetComponent<AudioSource>().Play();
     }
 }

@@ -20,6 +20,7 @@ public class DoorActivity : MonoBehaviour
         if (!other.gameObject.CompareTag("Player"))
             return;
 
+        GetComponent<AudioSource>().Play();
         messageBox.SetActive(true);
         other.gameObject.GetComponent<PastHero>().IsAllowedMove = false;
     }
