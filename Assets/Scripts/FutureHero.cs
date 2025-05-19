@@ -12,8 +12,9 @@ public class FutureHero : MonoBehaviour
     private SpriteRenderer sr;
     private Vector2 lastDirection = Vector2.down;
     [SerializeField] private int health = 10;
-    public bool IsMoving = false;
-
+    public bool IsMoving;
+    private AudioSource audioSource; 
+    [SerializeField] private AudioClip movementClip; 
     [SerializeField]public GameObject heroTarget;
 
     private void Awake()
@@ -21,6 +22,7 @@ public class FutureHero : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         sr = GetComponent<SpriteRenderer>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     private void FixedUpdate()
@@ -37,10 +39,22 @@ public class FutureHero : MonoBehaviour
         {
             IsMoving = true;
             lastDirection = inputVector;
+
+            if (!audioSource.isPlaying )
+            {
+                audioSource.clip = movementClip;
+                audioSource.loop = true; 
+                audioSource.Play();
+            }
         }
         else
         {
             IsMoving = false;
+
+            if (audioSource.isPlaying && audioSource.clip == movementClip)
+            {
+                audioSource.Stop();
+            }
         }
 
         anim.SetFloat("MoveX", inputVector.x);

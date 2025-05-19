@@ -10,11 +10,17 @@ public class PastHero : MonoBehaviour
     private Rigidbody2D rb;
     private Animator anim;
     private Vector2 lastDirection = Vector2.down;
+    public bool IsMoving;
+    private AudioSource audioSource; 
+    [SerializeField] private AudioClip movementClip; 
+    [SerializeField] private AudioClip damageClip;   
+    
     
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     private void FixedUpdate()
@@ -34,7 +40,24 @@ public class PastHero : MonoBehaviour
 
         if (inputVector != Vector2.zero)
         {
-            lastDirection = inputVector; // ����� ��� �������� ������ ��� ������� ������� ������
+            IsMoving = true;
+            lastDirection = inputVector;
+
+            if (!audioSource.isPlaying)
+            {
+                audioSource.clip = movementClip;
+                audioSource.loop = true; 
+                audioSource.Play();
+            }
+        }
+        else
+        {
+            IsMoving = false;
+
+            if (audioSource.isPlaying && audioSource.clip == movementClip)
+            {
+                audioSource.Stop();
+            }
         }
 
         anim.SetFloat("MoveX", inputVector.x);
