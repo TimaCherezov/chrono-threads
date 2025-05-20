@@ -13,7 +13,6 @@ public class PastHero : MonoBehaviour
     public bool IsMoving;
     private AudioSource audioSource; 
     [SerializeField] private AudioClip movementClip; 
-    [SerializeField] private AudioClip damageClip;   
     
     
     private void Awake()
