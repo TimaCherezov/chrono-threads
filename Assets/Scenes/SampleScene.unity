@@ -1958,7 +1958,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8752296053946429947, guid: e3bdc32ce6c5a109a9d51292765e3b35, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -318
+      value: -310
       objectReference: {fileID: 0}
     - target: {fileID: 8752296053946429947, guid: e3bdc32ce6c5a109a9d51292765e3b35, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -4189,11 +4189,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8752296053946429947, guid: e3bdc32ce6c5a109a9d51292765e3b35, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 374
+      value: 380
       objectReference: {fileID: 0}
     - target: {fileID: 8752296053946429947, guid: e3bdc32ce6c5a109a9d51292765e3b35, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 193
+      value: 192
       objectReference: {fileID: 0}
     - target: {fileID: 8752296053946429947, guid: e3bdc32ce6c5a109a9d51292765e3b35, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -4439,6 +4439,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2052692871}
     m_Modifications:
+    - target: {fileID: 3015081724138741171, guid: 0c974f0c89b7d3a429267dde6699b9da, type: 3}
+      propertyPath: DeadPanel
+      value: 
+      objectReference: {fileID: 1049323653}
     - target: {fileID: 3015081724138741171, guid: 0c974f0c89b7d3a429267dde6699b9da, type: 3}
       propertyPath: healthBar
       value: 

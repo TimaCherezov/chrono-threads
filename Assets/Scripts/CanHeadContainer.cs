@@ -38,6 +38,16 @@ public class CanHeadContainer : MonoBehaviour
     void CheckSequenceCorrectness()
     {
         if (cansHistory.SequenceEqual(cans))
+        {
             Debug.Log("DONE");
+            fadeController.StartFadeIn();
+            ShowObject();
+        }
+    }
+
+    void ShowObject()
+    {
+        if (targetObject != null)
+            targetObject.SetActive(true);
     }
 }

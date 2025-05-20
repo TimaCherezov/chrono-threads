@@ -16,7 +16,6 @@ public class HeroHealth : MonoBehaviour
     {
         _scrollbar = healthBar.GetComponent<Scrollbar>();
         _scrollbar.size = CalculateScrollbarSize();
-        DeadPanel.SetActive(false);
     }
 
     public void ApplyDamage(int damage)
@@ -28,8 +27,11 @@ public class HeroHealth : MonoBehaviour
             maxHealth - currentHealth
         );
         _scrollbar.size = CalculateScrollbarSize();
-        Die();
-        Debug.Log($"Future hero has damage applied {damage}");
+        if (currentHealth <= 0)
+        {
+            Die();
+            Debug.Log($"Future hero has damage applied {damage}");
+        }
     }
 
     private float CalculateScrollbarSize() =>
@@ -37,10 +39,7 @@ public class HeroHealth : MonoBehaviour
 
     public void Die()
     {
-        DeadPanel.SetActive(true);        
-        // Time.timeScale = 0.3f;
         ResetScene();
-        // Invoke("ResetScene", 3f);
     }    
 
     private void ResetScene()
