@@ -12,12 +12,12 @@ public class HeroHealth : MonoBehaviour
     [SerializeField] private GameObject DeadPanel;
     [SerializeField] private AudioClip damageSound; 
     private AudioSource audioSource;
-    private Scrollbar _scrollbar; // review: не по кодстайлу
+    private Scrollbar scrollbar; 
 
     private void Awake()
     {
-        _scrollbar = healthBar.GetComponent<Scrollbar>();
-        _scrollbar.size = CalculateScrollbarSize();
+        scrollbar = healthBar.GetComponent<Scrollbar>();
+        scrollbar.size = CalculateScrollbarSize();
         audioSource = GetComponent<AudioSource>();
         // DeadPanel.SetActive(false);
     }
@@ -30,7 +30,7 @@ public class HeroHealth : MonoBehaviour
         audioSource.clip = damageSound;
         audioSource.Play();
         currentHealth += Math.Clamp(damage, -currentHealth, maxHealth - currentHealth);
-        _scrollbar.size = CalculateScrollbarSize();
+        scrollbar.size = CalculateScrollbarSize();
         if (currentHealth <= 0)
         {
             Die();
