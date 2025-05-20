@@ -5,13 +5,13 @@ public class Dron : MonoBehaviour
     private float sideLength = 3f;
     private float delta = 1f;
     private float speed = 1f;
-    private const float RotationSpeed = 90f;
-    private const float RangeAction = 2f;
     [SerializeField] private GameObject[] waypoints;
     private int currentWaypoint;
     [SerializeField] private GameObject bulletPrefab;
     private bool isRotating;
     private int rotatingTimes;
+    private const float RotationSpeed = 90f;
+    private const float RangeAction = 2f;
 
     void FixedUpdate()
     {
