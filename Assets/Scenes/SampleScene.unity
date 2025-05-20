@@ -5325,6 +5325,14 @@ PrefabInstance:
       propertyPath: healthBar
       value: 
       objectReference: {fileID: 1258055181}
+    - target: {fileID: 4458821979295622866, guid: 06aab8dc70d8d1a42af89e30a9566c55, type: 3}
+      propertyPath: maxHealth
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 4458821979295622866, guid: 06aab8dc70d8d1a42af89e30a9566c55, type: 3}
+      propertyPath: currentHealth
+      value: 100
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
