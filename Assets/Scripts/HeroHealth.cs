@@ -29,7 +29,7 @@ public class HeroHealth : MonoBehaviour
         audioSource.loop = false;
         audioSource.clip = damageSound;
         audioSource.Play();
-        currentHealth += Math.Clamp(damage, -currentHealth, maxHealth - currentHealth);
+        // currentHealth += Math.Clamp(damage, -currentHealth, maxHealth - currentHealth);
         scrollbar.size = CalculateScrollbarSize();
         if (currentHealth <= 0)
         {

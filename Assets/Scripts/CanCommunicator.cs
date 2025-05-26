@@ -18,11 +18,10 @@ public class CanCommunicator : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (!other.TryGetComponent(typeof(CanStateContainer), out var can))
+        if (!other.TryGetComponent<CanStateContainer>(out var can))
             return;
         Debug.Log("TURNED ON");
-        // review: а зачем тут каст?
-        target = can as CanStateContainer;
+        target = can;
     }
 
     private void OnTriggerExit2D(Collider2D other)
