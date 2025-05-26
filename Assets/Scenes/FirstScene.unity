@@ -5350,6 +5350,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1049323653}
     - target: {fileID: 3015081724138741171, guid: 0c974f0c89b7d3a429267dde6699b9da, type: 3}
+      propertyPath: DeadPanel
+      value: 
+      objectReference: {fileID: 1049323653}
+    - target: {fileID: 3015081724138741171, guid: 0c974f0c89b7d3a429267dde6699b9da, type: 3}
       propertyPath: healthBar
       value: 
       objectReference: {fileID: 1049323653}

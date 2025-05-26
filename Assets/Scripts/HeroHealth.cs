@@ -46,7 +46,6 @@ public class HeroHealth : MonoBehaviour
         // DeadPanel.SetActive(true);        
         // Time.timeScale = 0.3f;
         ResetScene();
-        // Invoke("ResetScene", 3f);
     }    
 
     private void ResetScene()
