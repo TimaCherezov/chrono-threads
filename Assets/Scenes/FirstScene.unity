@@ -1603,6 +1603,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a976332a4dae634b84a943b6343a4bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  menuMusic: {fileID: 8300000, guid: 308cb66037d4f5b448faecd8cf6a0e53, type: 3}
+  gameplayMusic: {fileID: 8300000, guid: 308cb66037d4f5b448faecd8cf6a0e53, type: 3}
+  victoryMusic: {fileID: 0}
 --- !u!1 &1167642638
 GameObject:
   m_ObjectHideFlags: 0
@@ -1656,6 +1659,8 @@ MonoBehaviour:
   cansHistory: []
   targetObject: {fileID: 1955156683}
   fadeController: {fileID: 1898140334}
+  correctSound: {fileID: 8300000, guid: 254e560825c152b45a94b7447efe1cd6, type: 3}
+  wrongSound: {fileID: 8300000, guid: 069ecb0d689befe47bfad37dfcf0b175, type: 3}
 --- !u!82 &1167642641
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1666,8 +1671,8 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 254e560825c152b45a94b7447efe1cd6, type: 3}
-  m_Resource: {fileID: 8300000, guid: 254e560825c152b45a94b7447efe1cd6, type: 3}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -3512,7 +3517,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fadeImage: {fileID: 140747644}
-  fadeInDuration: 5
 --- !u!82 &1898140335
 AudioSource:
   m_ObjectHideFlags: 0

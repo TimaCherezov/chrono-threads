@@ -9,9 +9,14 @@ public class CanHeadContainer : MonoBehaviour
     [SerializeField] private List<GameObject> cansHistory;
     [SerializeField] private GameObject targetObject;
     [SerializeField] private FadeController fadeController;
+    [SerializeField] private AudioClip correctSound;
+    [SerializeField] private AudioClip wrongSound; 
+    private AudioSource audioSource; 
+
 
     private void Awake()
     {
+        audioSource = GetComponent<AudioSource>();
         cansHistory = new List<GameObject>(cans.Length);
         foreach (var can in cans)
         {
@@ -37,12 +42,24 @@ public class CanHeadContainer : MonoBehaviour
 
     void CheckSequenceCorrectness()
     {
+        if (cansHistory.Count != cans.Length)
+            return;
         if (cansHistory.SequenceEqual(cans))
         {
             Debug.Log("DONE");
-            GetComponent<AudioSource>().Play();
+            audioSource.PlayOneShot(correctSound);
             fadeController.StartFadeOut();
             ShowObject();
+        }
+        else
+        {
+            Debug.Log("WRONG");
+            cansHistory.Clear();
+            audioSource.PlayOneShot(wrongSound);
+            foreach (var can in cans)
+            {
+                can.GetComponent<CanStateContainer>().SetState(false);
+            }
         }
     }
 
