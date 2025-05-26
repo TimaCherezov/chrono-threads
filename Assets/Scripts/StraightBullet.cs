@@ -10,13 +10,13 @@ public class StraightBullet : MonoBehaviour
     private Vector3 _initial;
 
 
-    void Start()
+    private void Start()
     {
         _initial = transform.position;
         _vector = Target.transform.position;
     }
 
-    void FixedUpdate()
+    private void FixedUpdate()
     {
         transform.position += (_vector - _initial) * (Time.deltaTime * speed);
         if (Vector2.Distance(_initial, transform.position) > 10)

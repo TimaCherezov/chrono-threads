@@ -10,8 +10,8 @@ public class CanHeadContainer : MonoBehaviour
     [SerializeField] private GameObject targetObject;
     [SerializeField] private FadeController fadeController;
     [SerializeField] private AudioClip correctSound;
-    [SerializeField] private AudioClip wrongSound; 
-    private AudioSource audioSource; 
+    [SerializeField] private AudioClip wrongSound;
+    private AudioSource audioSource;
 
 
     private void Awake()
@@ -28,7 +28,7 @@ public class CanHeadContainer : MonoBehaviour
         }
     }
 
-    void OnCanStateChanged(GameObject can)
+    private void OnCanStateChanged(GameObject can)
     {
         Debug.Log("ON STATE CHENED");
         if (can.GetComponent<CanStateContainer>().IsActive)
@@ -37,15 +37,16 @@ public class CanHeadContainer : MonoBehaviour
             CheckSequenceCorrectness();
         }
         else
+        {
             cansHistory.Remove(can);
+        }
     }
 
-    void CheckSequenceCorrectness()
+    private void CheckSequenceCorrectness()
     {
         if (cansHistory.Count != cans.Length)
             return;
         if (cansHistory.SequenceEqual(cans))
-        {
         {
             Debug.Log("DONE");
             audioSource.PlayOneShot(correctSound);
@@ -57,14 +58,11 @@ public class CanHeadContainer : MonoBehaviour
             Debug.Log("WRONG");
             cansHistory.Clear();
             audioSource.PlayOneShot(wrongSound);
-            foreach (var can in cans)
-            {
-                can.GetComponent<CanStateContainer>().SetState(false);
-            }
+            foreach (var can in cans) can.GetComponent<CanStateContainer>().SetState(false);
         }
     }
 
-    void ShowObject()
+    private void ShowObject()
     {
         if (targetObject != null)
             targetObject.SetActive(true);
