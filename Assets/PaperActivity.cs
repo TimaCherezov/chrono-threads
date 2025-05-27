@@ -1,15 +1,15 @@
 using UnityEngine;
 
-public class PuzzleActivity : MonoBehaviour
+public class PaperActivity : MonoBehaviour
 {
-    [SerializeField] private GameObject puzzle;
-
+    public GameObject paper;
     void OnTriggerEnter2D(Collider2D other)
     {
         if (!other.gameObject.CompareTag("Player"))
             return;
 
-        puzzle.SetActive(true);
+        GetComponent<AudioSource>().Play();
+        paper.SetActive(true);
         other.gameObject.SetActive(false);
     }
 }
