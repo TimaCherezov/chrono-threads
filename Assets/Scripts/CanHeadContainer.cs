@@ -46,7 +46,6 @@ public class CanHeadContainer : MonoBehaviour
             return;
         if (cansHistory.SequenceEqual(cans))
         {
-        {
             Debug.Log("DONE");
             audioSource.PlayOneShot(correctSound);
             fadeController.StartFadeOut();

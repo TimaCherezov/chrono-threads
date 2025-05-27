@@ -1603,9 +1603,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a976332a4dae634b84a943b6343a4bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  menuMusic: {fileID: 8300000, guid: 308cb66037d4f5b448faecd8cf6a0e53, type: 3}
-  gameplayMusic: {fileID: 8300000, guid: 308cb66037d4f5b448faecd8cf6a0e53, type: 3}
-  victoryMusic: {fileID: 0}
+  firstScene: {fileID: 8300000, guid: 8083a27d7e4384046b353a087fdcb9c4, type: 3}
+  secondScene: {fileID: 8300000, guid: 308cb66037d4f5b448faecd8cf6a0e53, type: 3}
 --- !u!1 &1167642638
 GameObject:
   m_ObjectHideFlags: 0
@@ -5345,10 +5344,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2052692871}
     m_Modifications:
-    - target: {fileID: 3015081724138741171, guid: 0c974f0c89b7d3a429267dde6699b9da, type: 3}
-      propertyPath: DeadPanel
-      value: 
-      objectReference: {fileID: 1049323653}
     - target: {fileID: 3015081724138741171, guid: 0c974f0c89b7d3a429267dde6699b9da, type: 3}
       propertyPath: DeadPanel
       value: 
