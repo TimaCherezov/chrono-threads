@@ -3,6 +3,7 @@ using UnityEngine;
 public class Moving : MonoBehaviour
 {
     public GameObject form;
+    public GameObject Manager;
 
     private bool move;
     private bool finish;
@@ -28,8 +29,8 @@ public class Moving : MonoBehaviour
         {
             rb.position = new Vector2(form.transform.position.x, form.transform.position.y);
             finish = true;
-            PuzzleManager.Instance.PuzzleCompleted();
             GetComponent<AudioSource>().Play();
+            Manager.GetComponent<PuzzleManager>().PuzzleCompleted();
         }
     }
 
@@ -37,8 +38,7 @@ public class Moving : MonoBehaviour
     {
         if (move && !finish)
         {
-            Vector2 mouseScreen = Input.mousePosition;
-            Vector2 mouseWorld = Camera.main.ScreenToWorldPoint(mouseScreen);
+            Vector2 mouseWorld = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             rb.MovePosition(mouseWorld);
         }
     }
