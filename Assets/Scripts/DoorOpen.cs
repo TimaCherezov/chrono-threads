@@ -12,7 +12,7 @@ public class TriggerFade : MonoBehaviour
         {
             Debug.Log("���������� ����������!!!");
             GetComponent<AudioSource>().Play();
-            fadeController.StartFadeIn();  // ��������� ����������
+            fadeController.StartFadeIn();  
             Debug.Log(SceneManager.sceneCount);
             StartCoroutine(LoadSceneWithDelay());
         }
