@@ -6,12 +6,12 @@ public class Bullet : MonoBehaviour
     private Rigidbody rb;
     public GameObject target { get; set; }
 
-    void Start()
+    private void Start()
     {
         rb = GetComponent<Rigidbody>();
     }
 
-    void FixedUpdate()
+    private void FixedUpdate()
     {
         transform.position = Vector2.MoveTowards(
             transform.position, target.transform.position,
@@ -24,7 +24,8 @@ public class Bullet : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.name != "HeroTarget") return;
+        if (other.gameObject.name != "HeroTarget")
+            return;
         other.GetComponentInParent<HeroHealth>().ApplyDamage(-2);
         Destroy(gameObject);
     }

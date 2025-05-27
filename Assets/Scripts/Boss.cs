@@ -9,6 +9,7 @@ public class Boss : MonoBehaviour
     [SerializeField] private float speed = 1f;
 
     private int currentWaypoint;
+
     // private bool isRotating;
     // private int rotatingTimes;
     // private const float RotationSpeed = 90f;
@@ -23,7 +24,7 @@ public class Boss : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
     }
 
-    void FixedUpdate()
+    private void FixedUpdate()
     {
         // if (isRotating)
         // {
@@ -55,33 +56,28 @@ public class Boss : MonoBehaviour
             waypoints[currentWaypoint].transform.position,
             speed * Time.deltaTime
         );
-        
+
         rb.MovePosition(moved);
 
         if (Vector2.Distance(transform.position, waypoints[currentWaypoint].transform.position) < 0.1f)
-        {
             currentWaypoint = (currentWaypoint + 1) % waypoints.Length;
-            // isRotating = true;
-        }
+        // isRotating = true;
     }
 
 
-    void OnTriggerStay2D(Collider2D other)
+    private void OnTriggerStay2D(Collider2D other)
     {
         if (other.gameObject != target)
             return;
         var distance = Vector2.Distance(transform.position, other.transform.position);
-        if (distance <= RangeAction)
-        {
-            AttackHero(other.gameObject);
-            // GetComponent<AudioSource>().Play();
-        }
+        if (distance <= RangeAction) AttackHero(other.gameObject);
+        // GetComponent<AudioSource>().Play();
     }
 
-    void AttackHero(GameObject hero)
+    private void AttackHero(GameObject hero)
     {
         var bullet = Instantiate(bulletPrefab);
-        bullet.GetComponent<StraightBullet>().Target = hero;//.GetComponent<FutureHero>().heroTarget;
+        bullet.GetComponent<StraightBullet>().Target = hero; //.GetComponent<FutureHero>().heroTarget;
         bullet.transform.position = transform.position;
         Debug.Log("Дрон атакует FutureHero через триггер!");
     }

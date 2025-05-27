@@ -13,12 +13,12 @@ public class Dron : MonoBehaviour
     private const float RotationSpeed = 90f;
     private const float RangeAction = 2f;
 
-    void FixedUpdate()
+    private void FixedUpdate()
     {
         if (isRotating)
         {
             RotateTowardsCurrentWaypoint();
-            return; 
+            return;
         }
 
         MoveTowardsCurrentWaypoint();
@@ -29,12 +29,10 @@ public class Dron : MonoBehaviour
         var direction = waypoints[currentWaypoint].transform.position - transform.position;
         var angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         var targetRotation = Quaternion.Euler(0, 0, angle);
-        transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, RotationSpeed * Time.deltaTime);
+        transform.rotation =
+            Quaternion.RotateTowards(transform.rotation, targetRotation, RotationSpeed * Time.deltaTime);
 
-        if (Quaternion.Angle(transform.rotation, targetRotation) < 0.01f)
-        {
-            isRotating = false; 
-        }
+        if (Quaternion.Angle(transform.rotation, targetRotation) < 0.01f) isRotating = false;
     }
 
     private void MoveTowardsCurrentWaypoint()
@@ -48,14 +46,15 @@ public class Dron : MonoBehaviour
         if (Vector2.Distance(transform.position, waypoints[currentWaypoint].transform.position) < 0.1f)
         {
             currentWaypoint = (currentWaypoint + 1) % waypoints.Length;
-            isRotating = true; 
+            isRotating = true;
         }
     }
 
 
-    void OnTriggerEnter2D(Collider2D other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.name != "FutureHero") return;
+        if (other.gameObject.name != "FutureHero")
+            return;
         var distance = Vector2.Distance(transform.position, other.transform.position);
         if (distance <= RangeAction && other.GetComponent<FutureHero>().IsMoving)
         {
@@ -64,7 +63,7 @@ public class Dron : MonoBehaviour
         }
     }
 
-    void AttackHero(GameObject hero)
+    private void AttackHero(GameObject hero)
     {
         var bullet = Instantiate(bulletPrefab);
         bullet.GetComponent<Bullet>().target = hero.GetComponent<FutureHero>().heroTarget;

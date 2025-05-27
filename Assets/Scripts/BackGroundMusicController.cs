@@ -12,7 +12,7 @@ public class BackGroundMusicController : MonoBehaviour
 
     private Coroutine fadeCoroutine;
 
-    void Awake()
+    private void Awake()
     {
         audioSource = GetComponent<AudioSource>();
         if (instance != null)
@@ -29,6 +29,7 @@ public class BackGroundMusicController : MonoBehaviour
 
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
+
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         if (scene.name == currentScene) return;
@@ -66,6 +67,7 @@ public class BackGroundMusicController : MonoBehaviour
             audioSource.volume = Mathf.Lerp(audioSource.volume, 0f, t / fadeDuration);
             yield return null;
         }
+
         audioSource.volume = 0f;
         audioSource.Stop();
 
@@ -74,11 +76,12 @@ public class BackGroundMusicController : MonoBehaviour
         {
             audioSource.Play();
 
-            for (float t = 0f; t < fadeDuration; t += Time.unscaledDeltaTime)
+            for (var t = 0f; t < fadeDuration; t += Time.unscaledDeltaTime)
             {
                 audioSource.volume = Mathf.Lerp(0f, targetVolume, t / fadeDuration);
                 yield return null;
             }
+
             audioSource.volume = targetVolume;
         }
     }
