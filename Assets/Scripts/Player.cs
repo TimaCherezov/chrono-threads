@@ -14,6 +14,7 @@ public class Player : MonoBehaviour
     public bool IsAllowedMove { get; set; } = true;
     [SerializeField] public GameObject heroTarget;
 
+    protected bool isAttacking = false;
 
     private void Start()
     {
@@ -58,6 +59,7 @@ public class Player : MonoBehaviour
         anim.SetFloat("MoveX", direction.x);
         anim.SetFloat("MoveY", direction.y);
         anim.SetBool("IsMoving", direction != Vector2.zero);
+        anim.SetBool("IsAttacking", isAttacking);
 
         sr.flipX = lastDirection.x switch
         {
@@ -65,5 +67,11 @@ public class Player : MonoBehaviour
             > 0 => false,
             _ => sr.flipX
         };
+    }
+
+    protected void SetAttacking(bool state)
+    {
+        isAttacking = state;
+        Animation(lastDirection); 
     }
 }

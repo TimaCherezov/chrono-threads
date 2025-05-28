@@ -21,4 +21,21 @@ public class FutureHero : Player
         IsMoving = moveX == 0 || moveY == 0;
         return new Vector2(moveX, moveY);
     }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Return))
+            Attack();
+    }
+
+    private void Attack()
+    {
+        SetAttacking(true);
+        Invoke("ResetAttack", 0.5f);
+    }
+
+    private void ResetAttack()
+    {
+        SetAttacking(false);
+    }
 }

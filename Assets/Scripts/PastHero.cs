@@ -19,4 +19,21 @@ public class PastHero : Player
         IsMoving = moveX == 0 || moveY == 0;
         return new Vector2(moveX, moveY);
     }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+            Attack();
+    }
+
+    private void Attack()
+    {
+        SetAttacking(true);
+        Invoke("ResetAttack", 0.5f);
+    }
+
+    private void ResetAttack()
+    {
+        SetAttacking(false);
+    }
 }

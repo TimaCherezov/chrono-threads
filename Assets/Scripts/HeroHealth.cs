@@ -16,7 +16,15 @@ public class HeroHealth : MonoBehaviour
 
     private void Awake()
     {
+        if (healthBar == null)
+        {
+            Debug.LogError("HealthBar не назначен в инспекторе!");
+        }
         scrollbar = healthBar.GetComponent<Scrollbar>();
+        if (scrollbar == null)
+        {
+            Debug.Log("Scrollbar не найден на объекте!");
+        }
         scrollbar.size = CalculateScrollbarSize();
         audioSource = GetComponent<AudioSource>();
         // DeadPanel.SetActive(false);
@@ -29,8 +37,12 @@ public class HeroHealth : MonoBehaviour
         audioSource.loop = false;
         audioSource.clip = damageSound;
         audioSource.Play();
-        // currentHealth += Math.Clamp(currentHealth - damage, 0, maxHealth);
+        currentHealth += Math.Clamp(damage,
+                    -currentHealth,
+                    maxHealth - currentHealth
+                );        //currentHealth = currentHealth + damage >= 0 ? currentHealth + damage : 0;
         scrollbar.size = CalculateScrollbarSize();
+        Debug.Log("The player takes damage!");
         if (currentHealth <= 0)
         {
             Die();
@@ -45,8 +57,8 @@ public class HeroHealth : MonoBehaviour
 
     public void Die()
     {
-        // DeadPanel.SetActive(true);        
-        // Time.timeScale = 0.3f;
+        DeadPanel.SetActive(true);        
+        Time.timeScale = 0.3f;
         ResetScene();
     }
 

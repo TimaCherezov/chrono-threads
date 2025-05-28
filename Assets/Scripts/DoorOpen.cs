@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 public class TriggerFade : MonoBehaviour
 {
     [SerializeField] private FadeController fadeController;
+    [SerializeField] private int nextScene;
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -21,6 +22,6 @@ public class TriggerFade : MonoBehaviour
     private IEnumerator LoadSceneWithDelay()
     {
         yield return new WaitForSeconds(2.5f);
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(nextScene);
     }
 }
