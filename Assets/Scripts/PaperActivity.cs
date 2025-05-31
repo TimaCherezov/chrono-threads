@@ -35,7 +35,7 @@ public class PaperActivity : MonoBehaviour
 
     private void Update()
     {
-        if (activated || !entered || !Input.GetKeyDown(KeyCode.E))
+        if (activated || !entered || !Input.GetKeyDown(KeyCode.Q))
             return;
         pressE.SetActive(false);
         GetComponent<AudioSource>().Play();

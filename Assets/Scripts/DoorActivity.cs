@@ -9,7 +9,7 @@ public class InteractionZone : MonoBehaviour
 
     void Update()
     {
-        if (playerInZone != null && Input.GetKeyDown(KeyCode.E))
+        if (playerInZone != null && Input.GetKeyDown(KeyCode.Q))
         {
             pressE.SetActive(false);
             GetComponent<AudioSource>().Play();

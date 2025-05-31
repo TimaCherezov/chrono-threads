@@ -37,10 +37,8 @@ public class HeroHealth : MonoBehaviour
         audioSource.loop = false;
         audioSource.clip = damageSound;
         audioSource.Play();
-        currentHealth += Math.Clamp(damage,
-                    -currentHealth,
-                    maxHealth - currentHealth
-                );        //currentHealth = currentHealth + damage >= 0 ? currentHealth + damage : 0;
+        currentHealth += Math.Clamp(damage, -currentHealth, maxHealth - currentHealth);        
+        //currentHealth = currentHealth + damage >= 0 ? currentHealth + damage : 0;
         scrollbar.size = CalculateScrollbarSize();
         Debug.Log("The player takes damage!");
         if (currentHealth <= 0)

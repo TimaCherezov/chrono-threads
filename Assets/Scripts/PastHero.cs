@@ -3,7 +3,13 @@ using UnityEngine;
 public class PastHero : Player
 {
     public bool IsMoving;
+    [SerializeField] private AudioClip attackSound;
+    private AudioSource audioSource;
 
+    private void Awake()
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
     protected override Vector2 GetDirection()
     {
         var moveX = 0f;
@@ -28,6 +34,7 @@ public class PastHero : Player
 
     private void Attack()
     {
+        audioSource.PlayOneShot(attackSound);
         SetAttacking(true);
         Invoke("ResetAttack", 0.5f);
     }

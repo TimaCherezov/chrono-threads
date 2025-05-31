@@ -8,6 +8,7 @@ public class PuzzleManager : MonoBehaviour
     [SerializeField] private FadeController fadeController;
     [SerializeField] private GameObject puzzle;
     [SerializeField] private GameObject trigger;
+    [SerializeField] private GameObject blackScreen;
 
     public void PuzzleCompleted()
     {
@@ -16,6 +17,7 @@ public class PuzzleManager : MonoBehaviour
         if (completedPuzzles == totalPuzzles)
         {
             Debug.Log("completed");
+            blackScreen.SetActive(false);
             GetComponent<AudioSource>().Play();
             fadeController.StartFadeOut();
             puzzle.SetActive(false);

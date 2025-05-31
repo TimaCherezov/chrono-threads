@@ -5,6 +5,7 @@ public class PuzzleActivity : MonoBehaviour
     [SerializeField] private GameObject pressE;
     [SerializeField] private GameObject puzzle;
     [SerializeField] private GameObject player;
+    [SerializeField] private GameObject flickeringScreen;
     private bool playerInZone;
     private bool activated;
 
@@ -15,6 +16,7 @@ public class PuzzleActivity : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.E))
         {
+            flickeringScreen.SetActive(false);
             pressE.SetActive(false);
             puzzle.SetActive(true);
             player.SetActive(false);

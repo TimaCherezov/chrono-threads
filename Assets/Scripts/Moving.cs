@@ -1,8 +1,10 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class MovingPuzzles : MonoBehaviour
 {
-    public GameObject form;
+    public GameObject form;              
     public GameObject Manager;
 
     private bool move;
@@ -10,45 +12,57 @@ public class MovingPuzzles : MonoBehaviour
     private Rigidbody2D rb;
     private Vector2 startPosition;
 
-    void Awake()
+    private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
-        startPosition = transform.position;
+        startPosition = rb.position;
     }
 
     void OnMouseDown()
     {
-        Debug.Log("Mouse Down");
         if (finish) return;
         move = true;
-        Debug.Log("Mouse Down2");
     }
 
     void OnMouseUp()
     {
-        Debug.Log("Mouse Up");
         move = false;
 
-        if (Mathf.Abs(rb.position.x - form.transform.position.x) <= 0.5f &&
-            Mathf.Abs(rb.position.y - form.transform.position.y) <= 0.5f)
+        if (Vector2.Distance(rb.position, form.transform.position) <= 0.5f)
         {
-            rb.position = new Vector2(form.transform.position.x, form.transform.position.y);
+            rb.MovePosition(form.transform.position);
             finish = true;
             GetComponent<AudioSource>().Play();
             Manager.GetComponent<PuzzleManager>().PuzzleCompleted();
         }
         else
         {
-            rb.position = startPosition;
+            StartCoroutine(SmoothReturn());
         }
     }
 
-    void Update()
+    private void Update()
     {
         if (move && !finish)
         {
             Vector2 mouseWorld = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             rb.MovePosition(mouseWorld);
         }
+    }
+
+    private IEnumerator SmoothReturn()
+    {
+        var elapsed = 0f;
+        var duration = 0.3f;
+        var current = rb.position;
+
+        while (elapsed < duration)
+        {
+            elapsed += Time.deltaTime;
+            rb.MovePosition(Vector2.Lerp(current, startPosition, elapsed / duration));
+            yield return null;
+        }
+
+        rb.MovePosition(startPosition);
     }
 }

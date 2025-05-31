@@ -50,7 +50,7 @@ public class BackGroundMusicController : MonoBehaviour
                 StartFadeMusic(secondScene, 0.4f);
                 break;
             case "ThirdScene":
-                StartFadeMusic(thirdScene, 0.4f);
+                StartFadeMusic(thirdScene, 0.6f);
                 break;
             default:
                 StartFadeMusic(null, 0f);

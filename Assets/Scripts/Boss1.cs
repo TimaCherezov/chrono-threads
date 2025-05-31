@@ -14,7 +14,7 @@ public class BossBehavior : MonoBehaviour
     public float moveSpeed = 2f;
     public float changeTargetInterval = 3f;
     public float stopDistance = 2f;
-
+    
     private Transform[] players;
     private Transform currentTarget;
     private float attackAngle;
@@ -69,10 +69,12 @@ public class BossBehavior : MonoBehaviour
             yield return new WaitForSeconds(1f / fireRate);
 
             // Круговой выстрел
+            GetComponent<AudioSource>().Play();
             CircleAttack();
 
             // Спиральный выстрел с поворотом
             yield return new WaitForSeconds(0.5f);
+            GetComponent<AudioSource>().Play();
             yield return StartCoroutine(SpiralAttack(10, 0.15f));
         }
     }

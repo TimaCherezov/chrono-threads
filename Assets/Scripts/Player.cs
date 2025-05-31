@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class Player : MonoBehaviour
 {
@@ -7,21 +8,20 @@ public class Player : MonoBehaviour
     private Animator anim;
     protected Vector2 lastDirection;
     private SpriteRenderer sr;
-    private AudioSource audioSource;
+    [SerializeField] private AudioSource movementAudioSource;
     [SerializeField] private float moveSpeed = 5f;
     [SerializeField] private Camera cam;
     [SerializeField] private AudioClip movementClip;
     public bool IsAllowedMove { get; set; } = true;
     [SerializeField] public GameObject heroTarget;
 
-    protected bool isAttacking = false;
+    protected bool isAttacking;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
-        audioSource = GetComponent<AudioSource>();
     }
 
     private void FixedUpdate()
@@ -31,18 +31,17 @@ public class Player : MonoBehaviour
             direction = Vector2.zero;
         rb.linearVelocity = direction * moveSpeed;
 
-        if (lastDirection != direction)
-            Animation(direction);
+        Animation(direction);
 
-        if (direction != Vector2.zero && !audioSource.isPlaying)
+        if (direction != Vector2.zero && !movementAudioSource.isPlaying)
         {
-            audioSource.clip = movementClip;
-            audioSource.loop = true;
-            audioSource.Play();
+            movementAudioSource.clip = movementClip;
+            movementAudioSource.loop = true;
+            movementAudioSource.Play();
         }
-        else if (direction == Vector2.zero && audioSource.isPlaying && audioSource.clip == movementClip)
+        else if (direction == Vector2.zero && movementAudioSource.isPlaying && movementAudioSource.clip == movementClip)
         {
-            audioSource.Stop();
+            movementAudioSource.Stop();
         }
 
         cam.transform.position = transform.position + new Vector3(0, 0, cam.transform.position.z);
@@ -101,12 +100,12 @@ public class Player : MonoBehaviour
         var heroHealth = other.GetComponentInParent<HeroHealth>();
         if (heroHealth != null)
         {
-            Debug.Log($"{gameObject.name} атакует {other.gameObject.name}");
+            Debug.Log($"{gameObject.name} пїЅпїЅпїЅпїЅпїЅпїЅпїЅ {other.gameObject.name}");
             heroHealth.ApplyDamage(-1);
         }
         else
         {
-            Debug.LogWarning("Компонент HeroHealth не найден в родительских объектах " + other.gameObject.name);
+            Debug.LogWarning("пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ HeroHealth пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ " + other.gameObject.name);
         }
     }
 }
