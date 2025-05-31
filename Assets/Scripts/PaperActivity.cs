@@ -13,27 +13,31 @@ public class PaperActivity : MonoBehaviour
     [SerializeField] private GameObject oldBridge;
     [SerializeField] private GameObject correctSound;
     [SerializeField] private GameObject wrongSound;
-    [SerializeField] private int correctAnswer = 1488;
-    private TMP_InputField _inputField;
-    private bool _entered = false;
-    private bool _activated = false;
+    [SerializeField] private FadeController fadeController;
+    [SerializeField] private int correctAnswer = 4;
+    [SerializeField] private GameObject pressE;
+    private TMP_InputField inputField;
+    private bool entered;
+    private bool activated;
 
     private void Awake()
     {
-        _inputField = input.GetComponent<TMP_InputField>();
+        inputField = input.GetComponent<TMP_InputField>();
     }
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (!other.gameObject.CompareTag("Player"))
+        if (activated || !other.gameObject.CompareTag("Player"))
             return;
-        _entered = true;
+        pressE.SetActive(true);
+        entered = true;
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
-        if (_activated || !_entered || !Input.GetKeyDown(KeyCode.E))
+        if (activated || !entered || !Input.GetKeyDown(KeyCode.E))
             return;
+        pressE.SetActive(false);
         GetComponent<AudioSource>().Play();
         paper.SetActive(true);
         player.SetActive(false);
@@ -43,26 +47,28 @@ public class PaperActivity : MonoBehaviour
     {
         if (!other.gameObject.CompareTag("Player"))
             return;
-        _entered = false;
+        pressE.SetActive(false);
+        entered = false;
     }
 
     public void OnClick()
     {
-        if (int.TryParse(_inputField.text, out var answer) && answer == correctAnswer)
+        if (int.TryParse(inputField.text, out var answer) && answer == correctAnswer)
         {
             correctSound.GetComponent<AudioSource>().Play();
-            // fadeout
+            fadeController.StartFadeOut();
             paper.SetActive(false);
             player.SetActive(true);
             newBridge.SetActive(true);
             oldBridge.SetActive(false);
-            _activated = true;
+            activated = true;
+            pressE.SetActive(false);
         }
         else
         {
             Debug.Log("Wrong answer, try again!");
             wrongSound.GetComponent<AudioSource>().Play();
-            _inputField.text = string.Empty;
+            inputField.text = string.Empty;
         }
     }
 }
