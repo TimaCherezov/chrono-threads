@@ -7,8 +7,10 @@ public class BackGroundMusicController : MonoBehaviour
     private static BackGroundMusicController instance;
     private AudioSource audioSource;
     private string currentScene = "";
+    [SerializeField] private AudioClip menu;
     [SerializeField] private AudioClip firstScene;
     [SerializeField] private AudioClip secondScene;
+    [SerializeField] private AudioClip thirdScene;
 
     private Coroutine fadeCoroutine;
 
@@ -38,11 +40,17 @@ public class BackGroundMusicController : MonoBehaviour
 
         switch (scene.name)
         {
+            case "Menu":
+                StartFadeMusic(menu, 0.5f);
+                break;
             case "FirstScene":
                 StartFadeMusic(firstScene, 0.2f);
                 break;
             case "SecondScene":
                 StartFadeMusic(secondScene, 0.4f);
+                break;
+            case "ThirdScene":
+                StartFadeMusic(thirdScene, 0.4f);
                 break;
             default:
                 StartFadeMusic(null, 0f);

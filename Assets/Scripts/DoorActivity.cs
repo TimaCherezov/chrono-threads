@@ -1,17 +1,36 @@
-using System;
 using UnityEngine;
 
-public class DoorActivity : MonoBehaviour
+public class InteractionZone : MonoBehaviour
 {
-    [SerializeField] private GameObject messageBox;
+    public GameObject pressE;
+    public GameObject messageBox;
 
-    private void OnCollisionEnter2D(Collision2D other)
+    private GameObject playerInZone;
+
+    void Update()
     {
-        if (!other.gameObject.CompareTag("Player"))
-            return;
+        if (playerInZone != null && Input.GetKeyDown(KeyCode.E))
+        {
+            pressE.SetActive(false);
+            GetComponent<AudioSource>().Play();
+            messageBox.SetActive(true);
+            playerInZone.GetComponent<PastHero>().IsAllowedMove = false;
+        }
+    }
 
-        GetComponent<AudioSource>().Play();
-        messageBox.SetActive(true);
-        other.gameObject.GetComponent<PastHero>().IsAllowedMove = false;
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (!other.CompareTag("Player")) return;
+
+        pressE.SetActive(true);
+        playerInZone = other.gameObject;
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (!other.CompareTag("Player")) return;
+
+        pressE.SetActive(false);
+        playerInZone = null;
     }
 }

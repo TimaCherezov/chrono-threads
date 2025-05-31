@@ -5,12 +5,14 @@ using UnityEngine;
 public class CanCommunicator : MonoBehaviour
 {
     [CanBeNull] private CanStateContainer target;
+    [SerializeField] private GameObject pressE;
 
     private void Update()
     {
         if (target is not null &&
             Input.GetKeyDown(KeyCode.E))
         {
+            pressE.SetActive(false);
             target.SetState(!target.IsActive);
             Debug.Log("CHANGED");
         }
@@ -20,6 +22,7 @@ public class CanCommunicator : MonoBehaviour
     {
         if (!other.TryGetComponent<CanStateContainer>(out var can))
             return;
+        pressE.SetActive(true);
         Debug.Log("TURNED ON");
         target = can;
     }
@@ -28,6 +31,7 @@ public class CanCommunicator : MonoBehaviour
     {
         if (!other.TryGetComponent(typeof(CanStateContainer), out _))
             return;
+        pressE.SetActive(false);
         Debug.Log("TURNED OFF");
         target = null;
     }

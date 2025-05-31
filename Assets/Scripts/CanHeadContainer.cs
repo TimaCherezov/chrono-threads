@@ -11,6 +11,8 @@ public class CanHeadContainer : MonoBehaviour
     [SerializeField] private FadeController fadeController;
     [SerializeField] private AudioClip correctSound;
     [SerializeField] private AudioClip wrongSound;
+    [SerializeField] private GameObject table;
+    [SerializeField] private GameObject pastHero;
     private AudioSource audioSource;
 
 
@@ -50,6 +52,8 @@ public class CanHeadContainer : MonoBehaviour
         {
             Debug.Log("DONE");
             audioSource.PlayOneShot(correctSound);
+            table.SetActive(false);
+            pastHero.GetComponent<PastHero>().IsAllowedMove = true;
             fadeController.StartFadeOut();
             ShowObject();
         }

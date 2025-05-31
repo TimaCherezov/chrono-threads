@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Moving : MonoBehaviour
+public class MovingPuzzles : MonoBehaviour
 {
     public GameObject form;
     public GameObject Manager;
@@ -8,20 +8,25 @@ public class Moving : MonoBehaviour
     private bool move;
     private bool finish;
     private Rigidbody2D rb;
+    private Vector2 startPosition;
 
-    void Start()
+    void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        startPosition = transform.position;
     }
 
     void OnMouseDown()
     {
+        Debug.Log("Mouse Down");
         if (finish) return;
         move = true;
+        Debug.Log("Mouse Down2");
     }
 
     void OnMouseUp()
     {
+        Debug.Log("Mouse Up");
         move = false;
 
         if (Mathf.Abs(rb.position.x - form.transform.position.x) <= 0.5f &&
@@ -31,6 +36,10 @@ public class Moving : MonoBehaviour
             finish = true;
             GetComponent<AudioSource>().Play();
             Manager.GetComponent<PuzzleManager>().PuzzleCompleted();
+        }
+        else
+        {
+            rb.position = startPosition;
         }
     }
 
