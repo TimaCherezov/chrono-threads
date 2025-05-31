@@ -5,7 +5,7 @@ public class Player : MonoBehaviour
 {
     private Rigidbody2D rb;
     private Animator anim;
-    private Vector2 lastDirection;
+    protected Vector2 lastDirection;
     private SpriteRenderer sr;
     private AudioSource audioSource;
     [SerializeField] private float moveSpeed = 5f;
@@ -73,5 +73,40 @@ public class Player : MonoBehaviour
     {
         isAttacking = state;
         Animation(lastDirection); 
+    }
+
+    protected bool IsFacingTarget(GameObject target)
+    {
+        if (target == null) return false;
+
+        var facingDirection = lastDirection.normalized;
+        if (facingDirection == Vector2.zero)
+            facingDirection = sr.flipX ? Vector2.left : Vector2.right;
+
+        var directionToTarget = (target.transform.position - transform.position).normalized;
+
+        var dot = Vector2.Dot(facingDirection, directionToTarget);
+        return dot > 0.3f;
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (IsFacingTarget(other.gameObject))
+        {
+
+        }
+        if (other.gameObject.name != "Boss")
+            return;
+
+        var heroHealth = other.GetComponentInParent<HeroHealth>();
+        if (heroHealth != null)
+        {
+            Debug.Log($"{gameObject.name} атакует {other.gameObject.name}");
+            heroHealth.ApplyDamage(-1);
+        }
+        else
+        {
+            Debug.LogWarning("Компонент HeroHealth не найден в родительских объектах " + other.gameObject.name);
+        }
     }
 }
