@@ -9,7 +9,7 @@ public class HeroHealth : MonoBehaviour
 {
     [SerializeField] private int maxHealth = 10;
     [SerializeField] private int currentHealth = 10;
-    [SerializeField] private GameObject healthBar;
+    [SerializeField] private Image healthBar;
     [SerializeField] private GameObject DeadPanel;
     [SerializeField] private AudioClip damageSound;
     private AudioSource audioSource;
@@ -21,12 +21,7 @@ public class HeroHealth : MonoBehaviour
         {
             Debug.LogError("HealthBar не назначен в инспекторе!");
         }
-        scrollbar = healthBar.GetComponent<Scrollbar>();
-        if (scrollbar == null)
-        {
-            Debug.Log("Scrollbar не найден на объекте!");
-        }
-        scrollbar.size = CalculateScrollbarSize();
+        healthBar.fillAmount = CalculateScrollbarSize();
         audioSource = GetComponent<AudioSource>();
         // DeadPanel.SetActive(false);
     }
@@ -38,11 +33,17 @@ public class HeroHealth : MonoBehaviour
         audioSource.loop = false;
         audioSource.clip = damageSound;
         audioSource.Play();
+<<<<<<< Updated upstream
         currentHealth += Math.Clamp(damage,
                     -currentHealth,
                     maxHealth - currentHealth
                 );        //currentHealth = currentHealth + damage >= 0 ? currentHealth + damage : 0;
         scrollbar.size = CalculateScrollbarSize();
+=======
+        currentHealth += Math.Clamp(damage, -currentHealth, maxHealth - currentHealth);
+        //currentHealth = currentHealth + damage >= 0 ? currentHealth + damage : 0;
+        healthBar.fillAmount = CalculateScrollbarSize();
+>>>>>>> Stashed changes
         Debug.Log("The player takes damage!");
         if (currentHealth <= 0 && gameObject.tag == "Player")
         {

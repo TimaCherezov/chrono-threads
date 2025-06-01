@@ -24,9 +24,10 @@ public class FutureHero : Player
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Return))
+        if (Input.GetKeyDown(KeyCode.Return) && CanAttack())
             Attack();
     }
+<<<<<<< Updated upstream
 
     private void Attack()
     {
@@ -48,4 +49,6 @@ public class FutureHero : Player
     {
         SetAttacking(false);
     }
+=======
+>>>>>>> Stashed changes
 }

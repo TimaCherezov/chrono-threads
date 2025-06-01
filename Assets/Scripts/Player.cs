@@ -1,6 +1,11 @@
 using System;
 using Unity.VisualScripting;
 using UnityEngine;
+<<<<<<< Updated upstream
+=======
+using UnityEngine.Audio;
+using UnityEngine.Serialization;
+>>>>>>> Stashed changes
 
 public class Player : MonoBehaviour
 {
@@ -14,14 +19,36 @@ public class Player : MonoBehaviour
     [SerializeField] private AudioClip movementClip;
     public bool IsAllowedMove { get; set; } = true;
     [SerializeField] public GameObject heroTarget;
+    public float attackCooldown = 1.0f;
+    private float lastAttackTime = 0f;
+
+    [SerializeField] private AudioClip attackSound;
+    private AudioSource audioSource;
 
     protected bool isAttacking = false;
+
+    public float minScale = 0.6f; 
+    public float maxScale = 1.2f; 
+    public float minY = -3.5f;     
+    public float maxY = 3.5f;
+
+    private Collider2D collider2D;
+    private Vector2 originalColliderSize;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
+<<<<<<< Updated upstream
+=======
+        collider2D = GetComponent<CapsuleCollider2D>();
+        originalColliderSize = (collider2D as CapsuleCollider2D)?.size ?? Vector2.one;
+    }
+
+    private void Awake()
+    {
+>>>>>>> Stashed changes
         audioSource = GetComponent<AudioSource>();
     }
 
@@ -48,6 +75,20 @@ public class Player : MonoBehaviour
 
         cam.transform.position = transform.position + new Vector3(0, 0, cam.transform.position.z);
         lastDirection = direction;
+
+        UpdatePlayerScale();
+    }
+
+    private void UpdatePlayerScale()
+    {
+        var normalizedY = Mathf.InverseLerp(minY, maxY, transform.position.y);
+        var scale = Mathf.Lerp(maxScale, minScale, normalizedY);
+        transform.localScale = new Vector3 (scale, scale, 1f);
+        if (collider2D != null)
+        {
+            if (collider2D is CapsuleCollider2D capsuleCollider2D)
+                capsuleCollider2D.size = originalColliderSize * scale;
+        }
     }
 
     protected virtual Vector2 GetDirection()
@@ -61,20 +102,14 @@ public class Player : MonoBehaviour
         anim.SetFloat("MoveY", direction.y);
         anim.SetBool("IsMoving", direction != Vector2.zero);
         anim.SetBool("IsAttacking", isAttacking);
-
-        sr.flipX = lastDirection.x switch
-        {
-            < 0 => true,
-            > 0 => false,
-            _ => sr.flipX
-        };
+        if (direction.x != 0)
+            sr.flipX = direction.x < 0;
     }
 
     protected void SetAttacking(bool state)
     {
         isAttacking = state;
         Animation(lastDirection); 
-
     }
 
     protected bool IsFacingTarget(GameObject target)
@@ -87,8 +122,8 @@ public class Player : MonoBehaviour
 
         var directionToTarget = (target.transform.position - transform.position).normalized;
 
-        var dot = Vector2.Dot(facingDirection, directionToTarget);
-        return dot >= 0f;
+        var angle = Vector2.Angle(facingDirection, directionToTarget);
+        return angle <= 45f;
     }
 
     protected GameObject FindTargetAttackRange(float attackTange)
@@ -111,5 +146,33 @@ public class Player : MonoBehaviour
             }   
         }
         return closestTarget;
+    }
+
+    protected bool CanAttack()
+    {
+        return Time.time - lastAttackTime >= attackCooldown;
+    }
+
+    protected void Attack()
+    {
+        lastAttackTime = Time.time;
+        audioSource.PlayOneShot(attackSound);
+        SetAttacking(true);
+        Invoke("ResetAttack", 0.5f);
+        var target = FindTargetAttackRange(2f);
+        if (target != null)
+        {
+            var heroHealth = target.GetComponentInParent<HeroHealth>();
+            if (heroHealth != null && target.tag == "Boss" && IsFacingTarget(target))
+            {
+                Debug.Log("Игрок атакует босса!");
+                heroHealth.ApplyDamage(-5);
+            }
+        }
+    }
+
+    private void ResetAttack()
+    {
+        SetAttacking(false);
     }
 }

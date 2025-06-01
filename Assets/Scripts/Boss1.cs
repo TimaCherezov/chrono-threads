@@ -19,8 +19,11 @@ public class BossBehavior : MonoBehaviour
     private Transform currentTarget;
     private float attackAngle;
 
+    private SpriteRenderer sr;
+
     void Start()
     {
+        sr = GetComponent<SpriteRenderer>();
         FindPlayers();
         StartCoroutine(ChangeTargetRoutine());
         StartCoroutine(AttackPatternRoutine());
@@ -49,6 +52,16 @@ public class BossBehavior : MonoBehaviour
                     moveSpeed * Time.deltaTime
                 );
             }
+            var directionToTarget = (currentTarget.position - transform.position).normalized;
+            UpdateRotation(directionToTarget);
+        }
+    }
+
+    private void UpdateRotation(Vector2 direction)
+    {
+        if (sr != null)
+        {
+            sr.flipX = direction.x < 0; 
         }
     }
 
@@ -60,6 +73,11 @@ public class BossBehavior : MonoBehaviour
             if (players.Length > 0)
             {
                 currentTarget = players[Random.Range(0, players.Length)];
+                if (currentTarget != null)
+                {
+                    var directionToTarget = (currentTarget.position - transform.position).normalized;
+                    UpdateRotation(directionToTarget);
+                }
             }
         }
     }
@@ -92,6 +110,11 @@ public class BossBehavior : MonoBehaviour
 
     IEnumerator SpiralAttack(int bulletsCount, float delay)
     {
+        if (currentTarget != null)
+        {
+            var directionToTarget = (currentTarget.position - transform.position).normalized;
+            UpdateRotation(directionToTarget);
+        }
         for (var i = 0; i < bulletsCount; i++)
         {
             attackAngle += spiralFactor;

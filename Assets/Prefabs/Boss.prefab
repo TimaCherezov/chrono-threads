@@ -88,7 +88,7 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
+  m_SpriteSortPoint: 1
 --- !u!70 &5560872483948368606
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -138,6 +138,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 829f54c7b26e8074190ab30ae8732764, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bossSound: {fileID: 0}
+  bossAttack: {fileID: 0}
   bulletPrefab: {fileID: 4857502121160400009, guid: 791f74b58ddb49747a9aeda4804d8490, type: 3}
   fireRate: 0.5
   bulletsPerWave: 8

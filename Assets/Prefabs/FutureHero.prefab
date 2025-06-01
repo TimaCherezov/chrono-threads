@@ -235,10 +235,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc1daa2eea9b12044a701bfc6e54ec96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  movementAudioSource: {fileID: 0}
   moveSpeed: 2
   cam: {fileID: 0}
   movementClip: {fileID: 8300000, guid: 0b28ba97791421642ae469ec52b0eef7, type: 3}
   heroTarget: {fileID: 1575710573170892365}
+  attackCooldown: 1
+  attackSound: {fileID: 8300000, guid: 4e0f62f6f17913b4b83df3739ef6f06f, type: 3}
+  minScale: 0.6
+  maxScale: 1.2
+  minY: -3.5
+  maxY: 3.5
   IsMoving: 0
 --- !u!70 &1014054047017142727
 CapsuleCollider2D:
@@ -289,11 +296,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2248862902e6465909386caa384c4263, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 10
-  currentHealth: 10
+  maxHealth: 15
+  currentHealth: 15
   healthBar: {fileID: 0}
   DeadPanel: {fileID: 0}
-  damageSound: {fileID: 8300000, guid: 6917c8e22453bbf418140f82e4b689ff, type: 3}
+  damageSound: {fileID: 8300000, guid: 4b0e318cf68f077448d56bbea18cfe2f, type: 3}
 --- !u!58 &1954594806555537420
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -342,6 +349,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 416ced66c402e00b3b275b7069ac71fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pressE: {fileID: 0}
 --- !u!82 &5910960346544209123
 AudioSource:
   m_ObjectHideFlags: 0

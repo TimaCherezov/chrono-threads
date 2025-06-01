@@ -3,7 +3,11 @@ using UnityEngine;
 public class PastHero : Player
 {
     public bool IsMoving;
+<<<<<<< Updated upstream
 
+=======
+    
+>>>>>>> Stashed changes
     protected override Vector2 GetDirection()
     {
         var moveX = 0f;
@@ -22,9 +26,10 @@ public class PastHero : Player
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && CanAttack())
             Attack();
     }
+<<<<<<< Updated upstream
 
     private void Attack()
     {
@@ -46,4 +51,6 @@ public class PastHero : Player
     {
         SetAttacking(false);
     }
+=======
+>>>>>>> Stashed changes
 }
