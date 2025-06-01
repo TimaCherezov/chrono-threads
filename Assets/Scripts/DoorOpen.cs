@@ -6,15 +6,21 @@ public class TriggerFade : MonoBehaviour
 {
     [SerializeField] private FadeController fadeController;
     [SerializeField] private int nextScene;
+    [SerializeField] private GameObject musicController;
+
+    private bool hasTriggered;
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag("Player"))
+        if (hasTriggered) return;
+
+        if (other.CompareTag("Player"))
         {
-            Debug.Log("���������� ����������!!!");
-            GetComponent<AudioSource>().Play();
-            fadeController.StartFadeIn(); // ��������� ����������
-            Debug.Log(SceneManager.sceneCount);
+            hasTriggered = true; 
+            Debug.Log("Переход к следующей сцене...");
+            GetComponent<AudioSource>()?.Play();
+            fadeController?.StartFadeIn();
+            musicController.GetComponent<AudioSource>().Stop();
             StartCoroutine(LoadSceneWithDelay());
         }
     }
