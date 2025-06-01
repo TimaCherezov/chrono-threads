@@ -1,6 +1,7 @@
 using System;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class Player : MonoBehaviour
 {
@@ -8,7 +9,7 @@ public class Player : MonoBehaviour
     private Animator anim;
     protected Vector2 lastDirection;
     private SpriteRenderer sr;
-    private AudioSource audioSource;
+    [FormerlySerializedAs("audioSource")] [SerializeField] private AudioSource movementAudioSource;
     [SerializeField] private float moveSpeed = 5f;
     [SerializeField] private Camera cam;
     [SerializeField] private AudioClip movementClip;
@@ -22,7 +23,6 @@ public class Player : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
-        audioSource = GetComponent<AudioSource>();
     }
 
     private void FixedUpdate()
@@ -35,15 +35,15 @@ public class Player : MonoBehaviour
         if (lastDirection != direction)
             Animation(direction);
 
-        if (direction != Vector2.zero && !audioSource.isPlaying)
+        if (direction != Vector2.zero && !movementAudioSource.isPlaying)
         {
-            audioSource.clip = movementClip;
-            audioSource.loop = true;
-            audioSource.Play();
+            movementAudioSource.clip = movementClip;
+            movementAudioSource.loop = true;
+            movementAudioSource.Play();
         }
-        else if (direction == Vector2.zero && audioSource.isPlaying && audioSource.clip == movementClip)
+        else if (direction == Vector2.zero && movementAudioSource.isPlaying && movementAudioSource.clip == movementClip)
         {
-            audioSource.Stop();
+            movementAudioSource.Stop();
         }
 
         cam.transform.position = transform.position + new Vector3(0, 0, cam.transform.position.z);

@@ -3,7 +3,9 @@ using System.Collections;
 
 public class BossBehavior : MonoBehaviour
 {
-    [Header("Настройки стрельбы")]
+    [SerializeField] private AudioSource bossSound;
+    [SerializeField] private AudioClip bossAttack;
+     [Header("Настройки стрельбы")]
     public GameObject bulletPrefab;
     public float fireRate = 0.5f;
     public int bulletsPerWave = 8;
@@ -72,9 +74,11 @@ public class BossBehavior : MonoBehaviour
 
             // Круговой выстрел
             CircleAttack();
+            bossSound.PlayOneShot(bossAttack);
 
             // Спиральный выстрел с поворотом
             yield return new WaitForSeconds(0.5f);
+            bossSound.PlayOneShot(bossAttack);
             yield return StartCoroutine(SpiralAttack(10, 0.15f));
         }
     }

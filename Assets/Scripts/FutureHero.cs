@@ -46,7 +46,7 @@ public class FutureHero : Player
             var heroHealth = target.GetComponentInParent<HeroHealth>();
             if (heroHealth != null && target.tag == "Boss" && IsFacingTarget(target))
             {
-                Debug.Log("Игрок атакует босса!");
+                Debug.Log("РРіСЂРѕРє Р°С‚Р°РєСѓРµС‚ Р±РѕСЃСЃР°!");
                 heroHealth.ApplyDamage(-5);
             }
         }
