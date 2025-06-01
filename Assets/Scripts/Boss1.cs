@@ -13,7 +13,7 @@ public class BossBehavior : MonoBehaviour
     [Header("Настройки движения")]
     public float moveSpeed = 2f;
     public float changeTargetInterval = 3f;
-    public float stopDistance = 2f;
+    public float stopDistance = 1f;
 
     private Transform[] players;
     private Transform currentTarget;
@@ -37,16 +37,18 @@ public class BossBehavior : MonoBehaviour
     }
 
     void Update()
-    {
-        //var distanceToTarget = Vector2.Distance(transform.position, currentTarget.position);
-        // && distanceToTarget > stopDistance
+    {   
         if (currentTarget != null)
         {
-            transform.position = Vector2.MoveTowards(
-                transform.position,
-                currentTarget.position,
-                moveSpeed * Time.deltaTime
-            );
+            var distanceToTarget = Vector2.Distance(transform.position, currentTarget.position);
+            if (currentTarget != null && distanceToTarget > stopDistance)
+            {
+                transform.position = Vector2.MoveTowards(
+                    transform.position,
+                    currentTarget.position,
+                    moveSpeed * Time.deltaTime
+                );
+            }
         }
     }
 

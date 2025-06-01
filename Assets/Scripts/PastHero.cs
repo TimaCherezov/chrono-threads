@@ -30,6 +30,16 @@ public class PastHero : Player
     {
         SetAttacking(true);
         Invoke("ResetAttack", 0.5f);
+        var target = FindTargetAttackRange(2f);
+        if (target != null)
+        {
+            var heroHealth = target.GetComponentInParent<HeroHealth>();
+            if (heroHealth != null && target.tag == "Boss" && IsFacingTarget(target))
+            {
+                Debug.Log("Игрок атакует босса!");
+                heroHealth.ApplyDamage(-5);
+            }
+        }
     }
 
     private void ResetAttack()

@@ -1,4 +1,5 @@
 using System;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -73,6 +74,7 @@ public class Player : MonoBehaviour
     {
         isAttacking = state;
         Animation(lastDirection); 
+
     }
 
     protected bool IsFacingTarget(GameObject target)
@@ -86,27 +88,28 @@ public class Player : MonoBehaviour
         var directionToTarget = (target.transform.position - transform.position).normalized;
 
         var dot = Vector2.Dot(facingDirection, directionToTarget);
-        return dot > 0.3f;
+        return dot >= 0f;
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    protected GameObject FindTargetAttackRange(float attackTange)
     {
-        if (IsFacingTarget(other.gameObject))
+        var hits = Physics2D.OverlapCircleAll(transform.position, attackTange);
+        var cloestDistance = Mathf.Infinity;
+        GameObject closestTarget = null;
+        foreach ( var hit in hits )
         {
-
+            if (hit.gameObject == gameObject || hit.gameObject.tag == "Player") continue;
+            var health = hit.GetComponent<HeroHealth>();
+            if (health != null)
+            {
+                var distance = Vector2.Distance(transform.position, hit.transform.position);
+                if (distance < cloestDistance)
+                {
+                    cloestDistance = distance;
+                    closestTarget = hit.gameObject;
+                }
+            }   
         }
-        if (other.gameObject.name != "Boss")
-            return;
-
-        var heroHealth = other.GetComponentInParent<HeroHealth>();
-        if (heroHealth != null)
-        {
-            Debug.Log($"{gameObject.name} атакует {other.gameObject.name}");
-            heroHealth.ApplyDamage(-1);
-        }
-        else
-        {
-            Debug.LogWarning("Компонент HeroHealth не найден в родительских объектах " + other.gameObject.name);
-        }
+        return closestTarget;
     }
 }

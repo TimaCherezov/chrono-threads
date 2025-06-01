@@ -1,5 +1,6 @@
 using System;
 using System.Xml.Serialization;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -43,10 +44,15 @@ public class HeroHealth : MonoBehaviour
                 );        //currentHealth = currentHealth + damage >= 0 ? currentHealth + damage : 0;
         scrollbar.size = CalculateScrollbarSize();
         Debug.Log("The player takes damage!");
-        if (currentHealth <= 0)
+        if (currentHealth <= 0 && gameObject.tag == "Player")
         {
             Die();
             Debug.Log($"Future hero has damage applied {damage}");
+        }
+        if (currentHealth <= 0 && gameObject.tag == "Boss")
+        {
+            Destroy(gameObject);
+            Destroy(scrollbar.gameObject.transform.parent.gameObject);
         }
     }
 
