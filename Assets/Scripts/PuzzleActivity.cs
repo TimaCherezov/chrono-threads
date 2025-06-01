@@ -14,7 +14,7 @@ public class PuzzleActivity : MonoBehaviour
         if (activated || !playerInZone)
             return;
 
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.M))
         {
             flickeringScreen.SetActive(false);
             pressE.SetActive(false);
