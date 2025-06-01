@@ -1,6 +1,6 @@
 using System;
+using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 public class Player : MonoBehaviour
 {
@@ -8,20 +8,21 @@ public class Player : MonoBehaviour
     private Animator anim;
     protected Vector2 lastDirection;
     private SpriteRenderer sr;
-    [SerializeField] private AudioSource movementAudioSource;
+    private AudioSource audioSource;
     [SerializeField] private float moveSpeed = 5f;
     [SerializeField] private Camera cam;
     [SerializeField] private AudioClip movementClip;
     public bool IsAllowedMove { get; set; } = true;
     [SerializeField] public GameObject heroTarget;
 
-    protected bool isAttacking;
+    protected bool isAttacking = false;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     private void FixedUpdate()
@@ -31,17 +32,18 @@ public class Player : MonoBehaviour
             direction = Vector2.zero;
         rb.linearVelocity = direction * moveSpeed;
 
-        Animation(direction);
+        if (lastDirection != direction)
+            Animation(direction);
 
-        if (direction != Vector2.zero && !movementAudioSource.isPlaying)
+        if (direction != Vector2.zero && !audioSource.isPlaying)
         {
-            movementAudioSource.clip = movementClip;
-            movementAudioSource.loop = true;
-            movementAudioSource.Play();
+            audioSource.clip = movementClip;
+            audioSource.loop = true;
+            audioSource.Play();
         }
-        else if (direction == Vector2.zero && movementAudioSource.isPlaying && movementAudioSource.clip == movementClip)
+        else if (direction == Vector2.zero && audioSource.isPlaying && audioSource.clip == movementClip)
         {
-            movementAudioSource.Stop();
+            audioSource.Stop();
         }
 
         cam.transform.position = transform.position + new Vector3(0, 0, cam.transform.position.z);
@@ -72,6 +74,7 @@ public class Player : MonoBehaviour
     {
         isAttacking = state;
         Animation(lastDirection); 
+
     }
 
     protected bool IsFacingTarget(GameObject target)
@@ -85,27 +88,28 @@ public class Player : MonoBehaviour
         var directionToTarget = (target.transform.position - transform.position).normalized;
 
         var dot = Vector2.Dot(facingDirection, directionToTarget);
-        return dot > 0.3f;
+        return dot >= 0f;
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    protected GameObject FindTargetAttackRange(float attackTange)
     {
-        if (IsFacingTarget(other.gameObject))
+        var hits = Physics2D.OverlapCircleAll(transform.position, attackTange);
+        var cloestDistance = Mathf.Infinity;
+        GameObject closestTarget = null;
+        foreach ( var hit in hits )
         {
-
+            if (hit.gameObject == gameObject || hit.gameObject.tag == "Player") continue;
+            var health = hit.GetComponent<HeroHealth>();
+            if (health != null)
+            {
+                var distance = Vector2.Distance(transform.position, hit.transform.position);
+                if (distance < cloestDistance)
+                {
+                    cloestDistance = distance;
+                    closestTarget = hit.gameObject;
+                }
+            }   
         }
-        if (other.gameObject.name != "Boss")
-            return;
-
-        var heroHealth = other.GetComponentInParent<HeroHealth>();
-        if (heroHealth != null)
-        {
-            Debug.Log($"{gameObject.name} ������� {other.gameObject.name}");
-            heroHealth.ApplyDamage(-1);
-        }
-        else
-        {
-            Debug.LogWarning("��������� HeroHealth �� ������ � ������������ �������� " + other.gameObject.name);
-        }
+        return closestTarget;
     }
 }
