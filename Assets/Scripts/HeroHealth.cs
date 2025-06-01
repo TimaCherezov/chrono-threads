@@ -12,6 +12,7 @@ public class HeroHealth : MonoBehaviour
     [SerializeField] private GameObject healthBar;
     [SerializeField] private GameObject DeadPanel;
     [SerializeField] private AudioClip damageSound;
+    public bool godMode = false;
     private AudioSource audioSource;
     private Scrollbar scrollbar;
 
@@ -21,11 +22,13 @@ public class HeroHealth : MonoBehaviour
         {
             Debug.LogError("HealthBar не назначен в инспекторе!");
         }
+
         scrollbar = healthBar.GetComponent<Scrollbar>();
         if (scrollbar == null)
         {
             Debug.Log("Scrollbar не найден на объекте!");
         }
+
         scrollbar.size = CalculateScrollbarSize();
         audioSource = GetComponent<AudioSource>();
         // DeadPanel.SetActive(false);
@@ -38,7 +41,7 @@ public class HeroHealth : MonoBehaviour
         audioSource.loop = false;
         audioSource.clip = damageSound;
         audioSource.Play();
-        currentHealth += Math.Clamp(damage, -currentHealth, maxHealth - currentHealth);        
+        currentHealth += Math.Clamp(godMode ? 0 : damage, -currentHealth, maxHealth - currentHealth);
         //currentHealth = currentHealth + damage >= 0 ? currentHealth + damage : 0;
         scrollbar.size = CalculateScrollbarSize();
         Debug.Log("The player takes damage!");
@@ -47,6 +50,7 @@ public class HeroHealth : MonoBehaviour
             Die();
             Debug.Log($"Future hero has damage applied {damage}");
         }
+
         if (currentHealth <= 0 && gameObject.tag == "Boss")
         {
             Destroy(gameObject);
@@ -61,7 +65,7 @@ public class HeroHealth : MonoBehaviour
 
     public void Die()
     {
-        DeadPanel.SetActive(true);        
+        DeadPanel.SetActive(true);
         Time.timeScale = 0.3f;
         ResetScene();
     }
