@@ -8,6 +8,16 @@ public class SceneManagerScript : MonoBehaviour
         SceneManager.LoadScene(sceneName);
     }
 
+    public static void ChangeScene(int id)
+    {
+        SceneManager.LoadScene(id);
+    }
+
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
+
     public static void ResetCurrentScene()
     {
         var sceneName = SceneManager.GetActiveScene().name;
