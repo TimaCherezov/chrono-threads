@@ -10223,13 +10223,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 471377477882896240, guid: 6b7ce71f50fce01c3b37223f27866155, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1548514251017973571, guid: 6b7ce71f50fce01c3b37223f27866155, type: 3}
       propertyPath: m_Name
       value: PauseObject
       objectReference: {fileID: 0}
     - target: {fileID: 1548514251017973571, guid: 6b7ce71f50fce01c3b37223f27866155, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7382514545277889577, guid: 6b7ce71f50fce01c3b37223f27866155, type: 3}
       propertyPath: m_LocalPosition.x
