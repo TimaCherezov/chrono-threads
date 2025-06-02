@@ -7,14 +7,14 @@ using UnityEngine.UI;
 
 public class HeroHealth : MonoBehaviour
 {
-    [SerializeField] private int maxHealth = 10;
-    [SerializeField] private int currentHealth = 10;
-    [SerializeField] private GameObject healthBar;
+    [SerializeField] private int maxHealth = 15;
+    [SerializeField] private int currentHealth = 15;
+    [SerializeField] private Image healthBar;
     [SerializeField] private GameObject DeadPanel;
     [SerializeField] private AudioClip damageSound;
-    public bool godMode = false;
     private AudioSource audioSource;
     private Scrollbar scrollbar;
+    public bool godMode = false;
 
     private void Awake()
     {
@@ -22,14 +22,7 @@ public class HeroHealth : MonoBehaviour
         {
             Debug.LogError("HealthBar не назначен в инспекторе!");
         }
-
-        scrollbar = healthBar.GetComponent<Scrollbar>();
-        if (scrollbar == null)
-        {
-            Debug.Log("Scrollbar не найден на объекте!");
-        }
-
-        scrollbar.size = CalculateScrollbarSize();
+        healthBar.fillAmount = CalculateScrollbarSize();
         audioSource = GetComponent<AudioSource>();
         // DeadPanel.SetActive(false);
     }
@@ -41,16 +34,14 @@ public class HeroHealth : MonoBehaviour
         audioSource.loop = false;
         audioSource.clip = damageSound;
         audioSource.Play();
-        currentHealth += Math.Clamp(godMode ? 0 : damage, -currentHealth, maxHealth - currentHealth);
-        //currentHealth = currentHealth + damage >= 0 ? currentHealth + damage : 0;
-        scrollbar.size = CalculateScrollbarSize();
+        currentHealth += Math.Clamp(godMode ? 0 : damage, -currentHealth, maxHealth - currentHealth);        //currentHealth = currentHealth + damage >= 0 ? currentHealth + damage : 0;
+        healthBar.fillAmount = CalculateScrollbarSize();
         Debug.Log("The player takes damage!");
         if (currentHealth <= 0 && gameObject.tag == "Player")
         {
             Die();
             Debug.Log($"Future hero has damage applied {damage}");
         }
-
         if (currentHealth <= 0 && gameObject.tag == "Boss")
         {
             Destroy(gameObject);

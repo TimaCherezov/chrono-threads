@@ -3,13 +3,7 @@ using UnityEngine;
 public class PastHero : Player
 {
     public bool IsMoving;
-    [SerializeField] private AudioClip attackSound;
-    private AudioSource audioSource;
 
-    private void Awake()
-    {
-        audioSource = GetComponent<AudioSource>();
-    }
     protected override Vector2 GetDirection()
     {
         var moveX = 0f;
@@ -28,29 +22,7 @@ public class PastHero : Player
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && CanAttack())
             Attack();
-    }
-
-    private void Attack()
-    {
-        audioSource.PlayOneShot(attackSound);
-        SetAttacking(true);
-        Invoke("ResetAttack", 0.5f);
-        var target = FindTargetAttackRange(2f);
-        if (target != null)
-        {
-            var heroHealth = target.GetComponentInParent<HeroHealth>();
-            if (heroHealth != null && target.tag == "Boss" && IsFacingTarget(target))
-            {
-                Debug.Log("Игрок атакует босса!");
-                heroHealth.ApplyDamage(-5);
-            }
-        }
-    }
-
-    private void ResetAttack()
-    {
-        SetAttacking(false);
     }
 }

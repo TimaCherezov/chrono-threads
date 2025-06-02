@@ -3,14 +3,12 @@ using System.Collections;
 
 public class BossBehavior : MonoBehaviour
 {
-    [SerializeField] private AudioSource bossSound;
-    [SerializeField] private AudioClip bossAttack;
-     [Header("Настройки стрельбы")]
+    [Header("Настройки стрельбы")]
     public GameObject bulletPrefab;
     public float fireRate = 0.5f;
     public int bulletsPerWave = 8;
     public float bulletSpeed = 5f;
-    public float spiralFactor = 30f; 
+    public float spiralFactor = 30f;
 
     [Header("Настройки движения")]
     public float moveSpeed = 2f;
@@ -21,8 +19,11 @@ public class BossBehavior : MonoBehaviour
     private Transform currentTarget;
     private float attackAngle;
 
+    private SpriteRenderer sr;
+
     void Start()
     {
+        sr = GetComponent<SpriteRenderer>();
         FindPlayers();
         StartCoroutine(ChangeTargetRoutine());
         StartCoroutine(AttackPatternRoutine());
@@ -39,7 +40,7 @@ public class BossBehavior : MonoBehaviour
     }
 
     void Update()
-    {   
+    {
         if (currentTarget != null)
         {
             var distanceToTarget = Vector2.Distance(transform.position, currentTarget.position);
@@ -51,6 +52,16 @@ public class BossBehavior : MonoBehaviour
                     moveSpeed * Time.deltaTime
                 );
             }
+            var directionToTarget = (currentTarget.position - transform.position).normalized;
+            UpdateRotation(directionToTarget);
+        }
+    }
+
+    private void UpdateRotation(Vector2 direction)
+    {
+        if (sr != null)
+        {
+            sr.flipX = direction.x < 0;
         }
     }
 
@@ -62,6 +73,11 @@ public class BossBehavior : MonoBehaviour
             if (players.Length > 0)
             {
                 currentTarget = players[Random.Range(0, players.Length)];
+                if (currentTarget != null)
+                {
+                    var directionToTarget = (currentTarget.position - transform.position).normalized;
+                    UpdateRotation(directionToTarget);
+                }
             }
         }
     }
@@ -74,11 +90,9 @@ public class BossBehavior : MonoBehaviour
 
             // Круговой выстрел
             CircleAttack();
-            bossSound.PlayOneShot(bossAttack);
 
             // Спиральный выстрел с поворотом
             yield return new WaitForSeconds(0.5f);
-            bossSound.PlayOneShot(bossAttack);
             yield return StartCoroutine(SpiralAttack(10, 0.15f));
         }
     }
@@ -96,6 +110,11 @@ public class BossBehavior : MonoBehaviour
 
     IEnumerator SpiralAttack(int bulletsCount, float delay)
     {
+        if (currentTarget != null)
+        {
+            var directionToTarget = (currentTarget.position - transform.position).normalized;
+            UpdateRotation(directionToTarget);
+        }
         for (var i = 0; i < bulletsCount; i++)
         {
             attackAngle += spiralFactor;
