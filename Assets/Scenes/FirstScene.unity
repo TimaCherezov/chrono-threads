@@ -1074,7 +1074,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3999430746526717352, guid: 817cf0dd6ec34cc489a8c5a73f5ee741, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5868237928071925863, guid: 817cf0dd6ec34cc489a8c5a73f5ee741, type: 3}
       propertyPath: m_Pivot.x
@@ -1571,7 +1571,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -2224474878120320963, guid: 71c3d599f09fc304aa70cca941032170, type: 3}
+  m_Sprite: {fileID: 2811246782448359015, guid: dea03260ef28bdb4592de07f541ab56a, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2573,6 +2573,14 @@ PrefabInstance:
     - target: {fileID: 4326243678056667544, guid: b24f235d930a70148bd8b6a9ae899499, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5909628017254302262, guid: b24f235d930a70148bd8b6a9ae899499, type: 3}
+      propertyPath: m_SortingOrder
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5909628017254302262, guid: b24f235d930a70148bd8b6a9ae899499, type: 3}
+      propertyPath: m_AdditionalShaderChannelsFlag
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 6045353269172299383, guid: b24f235d930a70148bd8b6a9ae899499, type: 3}
       propertyPath: m_Name
@@ -4855,11 +4863,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1603357959}
   m_CullTransparentMesh: 1
---- !u!1 &1616977312 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6079489899114380834, guid: b24f235d930a70148bd8b6a9ae899499, type: 3}
+--- !u!114 &1616977314 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 60375119263547581, guid: b24f235d930a70148bd8b6a9ae899499, type: 3}
   m_PrefabInstance: {fileID: 987290897}
   m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1623256507
 GameObject:
   m_ObjectHideFlags: 0
@@ -7908,7 +7922,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &2135301812
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8285,7 +8299,7 @@ PrefabInstance:
     - target: {fileID: 3015081724138741171, guid: 0c974f0c89b7d3a429267dde6699b9da, type: 3}
       propertyPath: healthBar
       value: 
-      objectReference: {fileID: 1616977312}
+      objectReference: {fileID: 1616977314}
     - target: {fileID: 3015081724138741171, guid: 0c974f0c89b7d3a429267dde6699b9da, type: 3}
       propertyPath: damageSound
       value: 

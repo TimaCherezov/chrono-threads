@@ -13,6 +13,7 @@ public class DialogController : MonoBehaviour
 
     private void Awake()
     {
+        Time.timeScale = 0f;
         if (replicasFromLeft.Length == replicas.Length)
             return;
         Debug.LogError("Replicas and replicasFromLeft arrays must have the same length.");
@@ -26,6 +27,7 @@ public class DialogController : MonoBehaviour
         if (currentIndex >= replicas.Length)
         {
             gameObject.SetActive(false);
+            Time.timeScale = 1f;
             return;
         }
 

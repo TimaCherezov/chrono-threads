@@ -10,7 +10,7 @@ public class CanCommunicator : MonoBehaviour
     private void Update()
     {
         if (target is not null &&
-            Input.GetKeyDown(KeyCode.E))
+            Input.GetKeyDown(KeyCode.M))
         {
             pressE.SetActive(false);
             target.SetState(!target.IsActive);
