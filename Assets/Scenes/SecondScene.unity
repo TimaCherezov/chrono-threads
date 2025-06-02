@@ -1436,6 +1436,26 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -189.32
       objectReference: {fileID: 0}
+    - target: {fileID: 7277948544888887386, guid: 7fd86842ddec1a5b3b8a6f520bab0354, type: 3}
+      propertyPath: m_fontSize
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7277948544888887386, guid: 7fd86842ddec1a5b3b8a6f520bab0354, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 9f876fc85e2d30a469c0fffdb6a32e5a, type: 2}
+    - target: {fileID: 7277948544888887386, guid: 7fd86842ddec1a5b3b8a6f520bab0354, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7277948544888887386, guid: 7fd86842ddec1a5b3b8a6f520bab0354, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: -7203356529085158176, guid: 9f876fc85e2d30a469c0fffdb6a32e5a, type: 2}
+    - target: {fileID: 7277948544888887386, guid: 7fd86842ddec1a5b3b8a6f520bab0354, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8995157350651761004, guid: 7fd86842ddec1a5b3b8a6f520bab0354, type: 3}
       propertyPath: m_Pivot.x
       value: 0
