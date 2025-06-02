@@ -51,7 +51,7 @@ public class HeroHealth : MonoBehaviour
             audioSourceForEnd.PlayOneShot(audioSourceForEnd.clip);
             fadeController?.StartFadeIn();
             musicController.GetComponent<AudioSource>().Stop();
-            StartCoroutine(LoadSceneWithDelay(4, 1f));
+            StartCoroutine(LoadSceneWithDelay(4, 2.5f));
         }
         
     }
