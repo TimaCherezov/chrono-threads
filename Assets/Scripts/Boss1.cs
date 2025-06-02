@@ -93,9 +93,10 @@ public class BossBehavior : MonoBehaviour
             // Круговой выстрел
             attackAudioSource.PlayOneShot(attackClip);
             CircleAttack();
-            attackAudioSource.PlayOneShot(attackClip);
+            
             // Спиральный выстрел с поворотом
             yield return new WaitForSeconds(0.5f);
+            attackAudioSource.PlayOneShot(attackClip);
             yield return StartCoroutine(SpiralAttack(10, 0.15f));
         }
     }

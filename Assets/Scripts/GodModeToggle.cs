@@ -11,7 +11,7 @@ public class GodModeToggle : MonoBehaviour
     public void ToggleGodMode()
     {
         _godMod = !_godMod;
-        text.GetComponent<TMP_Text>().text = _godMod ? "Бессмертие: ВЫКЛ" : "Бессмертие: ВКЛ";
+        text.GetComponent<TMP_Text>().text = _godMod ? "БЕССМЕРТИЕ: ВЫКЛ" : "БЕССМЕРТИЕ: ВКЛ";
         foreach (var healthObject in healthObjects)
         {
             var heroHealth = healthObject.GetComponent<HeroHealth>();
