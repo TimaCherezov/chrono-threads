@@ -10,7 +10,8 @@ public class Player : MonoBehaviour
     private Animator anim;
     protected Vector2 lastDirection;
     private SpriteRenderer sr;
-    private AudioSource audioSource;
+    [SerializeField] private AudioSource movementAudioSource;
+    [SerializeField] private AudioSource attackAudioSource;
     [SerializeField] private float moveSpeed = 5f;
     [SerializeField] private Camera cam;
     [SerializeField] private AudioClip movementClip;
@@ -19,6 +20,7 @@ public class Player : MonoBehaviour
     public float attackCooldown = 1.0f;
     private float lastAttackTime = 0f;
 
+    // [SerializeField] private AudioSource audioSourc;
     [SerializeField] private AudioClip attackSound;
 
     protected bool isAttacking = false;
@@ -40,10 +42,10 @@ public class Player : MonoBehaviour
         originalColliderSize = (collider2D as CapsuleCollider2D)?.size ?? Vector2.one;
     }
 
-    private void Awake()
-    {
-        audioSource = GetComponent<AudioSource>();
-    }
+    // private void Awake()
+    // {
+    //     audioSource2 = GetComponent<AudioSource>();
+    // }
 
     private void FixedUpdate()
     {
@@ -55,15 +57,15 @@ public class Player : MonoBehaviour
         if (lastDirection != direction)
             Animation(direction);
 
-        if (direction != Vector2.zero && !audioSource.isPlaying)
+        if (direction != Vector2.zero && !movementAudioSource.isPlaying)
         {
-            audioSource.clip = movementClip;
-            audioSource.loop = true;
-            audioSource.Play();
+            movementAudioSource.clip = movementClip;
+            movementAudioSource.loop = true;
+            movementAudioSource.Play();
         }
-        else if (direction == Vector2.zero && audioSource.isPlaying && audioSource.clip == movementClip)
+        else if (direction == Vector2.zero && movementAudioSource.isPlaying && movementAudioSource.clip == movementClip)
         {
-            audioSource.Stop();
+            movementAudioSource.Stop();
         }
 
         cam.transform.position = transform.position + new Vector3(0, 0, cam.transform.position.z);
@@ -149,7 +151,7 @@ public class Player : MonoBehaviour
     protected void Attack()
     {
         lastAttackTime = Time.time;
-        audioSource.PlayOneShot(attackSound);
+        attackAudioSource.PlayOneShot(attackSound);
         SetAttacking(true);
         Invoke("ResetAttack", 0.5f);
         var target = FindTargetAttackRange(2f);

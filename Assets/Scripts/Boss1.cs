@@ -18,6 +18,8 @@ public class BossBehavior : MonoBehaviour
     private Transform[] players;
     private Transform currentTarget;
     private float attackAngle;
+    [SerializeField] private AudioSource attackAudioSource;
+    [SerializeField] private AudioClip attackClip;
 
     private SpriteRenderer sr;
 
@@ -89,8 +91,9 @@ public class BossBehavior : MonoBehaviour
             yield return new WaitForSeconds(1f / fireRate);
 
             // Круговой выстрел
+            attackAudioSource.PlayOneShot(attackClip);
             CircleAttack();
-
+            attackAudioSource.PlayOneShot(attackClip);
             // Спиральный выстрел с поворотом
             yield return new WaitForSeconds(0.5f);
             yield return StartCoroutine(SpiralAttack(10, 0.15f));
