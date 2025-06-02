@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Xml.Serialization;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -12,6 +13,9 @@ public class HeroHealth : MonoBehaviour
     [SerializeField] private Image healthBar;
     [SerializeField] private GameObject DeadPanel;
     [SerializeField] private AudioClip damageSound;
+    [SerializeField] private FadeController fadeController;
+    [SerializeField] private GameObject musicController;
+    [SerializeField] private AudioSource audioSourceForEnd;
     private AudioSource audioSource;
     private Scrollbar scrollbar;
     public bool godMode = false;
@@ -44,9 +48,12 @@ public class HeroHealth : MonoBehaviour
         }
         if (currentHealth <= 0 && gameObject.tag == "Boss")
         {
-            Destroy(gameObject);
-            Destroy(scrollbar.gameObject.transform.parent.gameObject);
+            audioSourceForEnd.PlayOneShot(audioSourceForEnd.clip);
+            fadeController?.StartFadeIn();
+            musicController.GetComponent<AudioSource>().Stop();
+            StartCoroutine(LoadSceneWithDelay(4, 1f));
         }
+        
     }
 
     private float CalculateScrollbarSize()
@@ -66,4 +73,10 @@ public class HeroHealth : MonoBehaviour
         Time.timeScale = 1f;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
+    IEnumerator LoadSceneWithDelay(int sceneIndex, float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        SceneManager.LoadScene(sceneIndex);
+    }
+    
 }
