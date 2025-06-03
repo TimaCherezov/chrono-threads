@@ -4,8 +4,7 @@ using UnityEngine.Events;
 
 public class CanStateContainer : MonoBehaviour
 {
-    [SerializeField] private bool isActive;
-    public bool IsActive => isActive;
+    [SerializeField] public bool IsActive;
     public UnityEvent onStateChange;
 
 
@@ -15,7 +14,7 @@ public class CanStateContainer : MonoBehaviour
 
     public void SetState(bool state)
     {
-        isActive = state;
+        IsActive = state;
         onBar.SetActive(state);
         offBar.SetActive(!state);
         onStateChange.Invoke();

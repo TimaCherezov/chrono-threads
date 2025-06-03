@@ -18,6 +18,7 @@ public class HeroHealth : MonoBehaviour
     [SerializeField] private AudioSource audioSourceForEnd;
     private AudioSource audioSource;
     private Scrollbar scrollbar;
+    private bool isDead = false;
     public bool godMode = false;
 
     private void Awake()
@@ -46,8 +47,9 @@ public class HeroHealth : MonoBehaviour
             Die();
             Debug.Log($"Future hero has damage applied {damage}");
         }
-        if (currentHealth <= 0 && gameObject.tag == "Boss")
+        if (currentHealth <= 0 && gameObject.tag == "Boss" && !isDead)
         {
+            isDead = true;
             audioSourceForEnd.PlayOneShot(audioSourceForEnd.clip);
             fadeController?.StartFadeIn();
             musicController.GetComponent<AudioSource>().Stop();
@@ -63,6 +65,7 @@ public class HeroHealth : MonoBehaviour
 
     public void Die()
     {
+        Destroy(gameObject);
         DeadPanel.SetActive(true);
         Time.timeScale = 0.3f;
         ResetScene();

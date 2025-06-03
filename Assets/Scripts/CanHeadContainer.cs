@@ -15,7 +15,13 @@ public class CanHeadContainer : MonoBehaviour
     [SerializeField] private GameObject pastHero;
     private AudioSource audioSource;
 
-
+    private void Start()
+    {
+        foreach (GameObject can in cans)
+        {
+            can.GetComponent<CanStateContainer>().IsActive = false;
+        }
+    }
     private void Awake()
     {
         audioSource = GetComponent<AudioSource>();

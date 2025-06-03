@@ -53,9 +53,8 @@ public class Player : MonoBehaviour
         if (!IsAllowedMove)
             direction = Vector2.zero;
         rb.linearVelocity = direction * moveSpeed;
-
-        if (lastDirection != direction)
-            Animation(direction);
+        
+        Animation(direction);
 
         if (direction != Vector2.zero && !movementAudioSource.isPlaying)
         {

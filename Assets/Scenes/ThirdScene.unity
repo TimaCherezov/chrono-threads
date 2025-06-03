@@ -5555,8 +5555,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2248862902e6465909386caa384c4263, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 100
-  currentHealth: 100
+  maxHealth: 70
+  currentHealth: 70
   healthBar: {fileID: 1240169495}
   DeadPanel: {fileID: 250079556}
   damageSound: {fileID: 8300000, guid: 80d3872b91fa44a41a7b215558ed1e47, type: 3}
